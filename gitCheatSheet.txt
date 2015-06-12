@@ -1,0 +1,57 @@
+#######	Helpful Git Commands To Know ##########################################
+#@+author: Erik.Benscoter######################################################
+
+git remote --add <name> <url>			#gives an easy name for the url
+	#e.g:
+	git remote --add origin "https://github.com/erikbenscoter/ist402_group.git"
+
+git add <filename>		#adds "filename" to your local repository
+
+git commit			#commits any changes to files already added
+				#to local repository and commits the changes
+				#to the local repository
+
+##############################################################################
+If you ran git remote --add origin <url> you can use the following	     #
+##############################################################################
+
+git push origin <branch>	#pushes your changes from your local
+				#repository to the <branch> branch on the
+				#remote repository
+				#usually (and in this project's case) you
+				#should probably be pushing to the 'master'
+				#branch so to push your changes it will look
+				#like this:
+
+	git push origin master
+
+git pull origin			#this will pull the files on the remote server
+				#and put them in your local repository.  This
+				#will not affect the changes you've made.
+
+#############################################################################
+
+
+
+git push <url><branch>		#pushes local repository changes to the 
+				#remote repository
+
+git pull <url>			#pull changes from the remote repository
+				#and put them in local repository
+
+##tips and tricks##
+* push often: reduces conflicts and makes changes easier to merge
+* pull before you commit: it won't affect your changes to files
+* to make changes you must commit before you add so the recommended order
+	for a file that has never been added to the repository would be:
+
+	git pull origin
+	git add 'filename.txt'
+	git commit
+	git push origin master
+
+* If you prefer a gui interface there are many, however I have never used any.
+	I also believe that android-studio may have an already installed
+	feature for using git.  I imagine it must somehow make use of
+	these commands however.
+
