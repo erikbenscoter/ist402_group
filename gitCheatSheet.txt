@@ -39,6 +39,11 @@ git push <url><branch>		#pushes local repository changes to the
 git pull <url>			#pull changes from the remote repository
 				#and put them in local repository
 
+##important########
+* when committing changes make sure that in the editor that pops up you
+	leave a helpful comment about the changes you've made then save
+	and it will commit your changes
+
 ##tips and tricks##
 * push often: reduces conflicts and makes changes easier to merge
 * pull before you commit: it won't affect your changes to files
