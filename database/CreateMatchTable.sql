@@ -1,0 +1,13 @@
+Create Table Match(
+MatchID			INT(6)		AUTO_INCREMENT	PRIMARY KEY,
+TournamentID	INT(6)		NOT NULL,
+Team1ID			INT(6)		NOT NULL,
+Team2ID			INT(6)		NOT NULL,
+MatchNumber		INT(6)		NOT NULL,
+FOREIGN KEY(TournamentID)
+	REFERENCES Tournament(TournamentID),
+FOREIGN KEY(Team1ID)
+	REFERENCES Team(TeamID),
+FOREIGN KEY(Team2ID)
+	REFERENCES Team(Team2ID)
+);

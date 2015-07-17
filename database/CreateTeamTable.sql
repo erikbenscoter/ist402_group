@@ -1,0 +1,6 @@
+Create Table Team(
+TeamID			INT(6)		AUTO_INCREMENT	PRIMARY KEY,
+TeamName		VARCHAR(72)	NOT NULL,
+Win				INT(6)		NOT NULL,
+Loss			INT(6)		NOT NULL
+);
