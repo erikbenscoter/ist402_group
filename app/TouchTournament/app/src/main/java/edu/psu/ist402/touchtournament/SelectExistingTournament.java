@@ -6,12 +6,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class ExistingTournament extends ActionBarActivity {
+public class SelectExistingTournament extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_existing_tournament);
+        setContentView(R.layout.activity_select_existing_tournament);
     }
 
     @Override

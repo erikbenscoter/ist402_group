@@ -62,7 +62,8 @@
             android:text="View a Tournamnet in Progress"
             android:id="@+id/btnViewCurrentTournament"
             android:layout_gravity="center"
-            android:layout_weight="2" />
+            android:layout_weight="2"
+            android:onClick="viewInProgres"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -74,9 +75,10 @@
         <Button
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Browse Completed Tournament"
+            android:text="Search Completed Tournaments"
             android:id="@+id/btnViewCompletedTournament"
             android:layout_gravity="center"
-            android:layout_weight="2" />
+            android:layout_weight="2"
+            android:onClick="searchCompleted" />
     </LinearLayout>
 </RelativeLayout>

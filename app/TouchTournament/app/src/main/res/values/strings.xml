@@ -45,5 +45,6 @@
         <item>32</item>
     </string-array>
     <string name="title_activity_open_existing_tournament">Open Existing Tournament</string>
+    <string name="title_activity_search_tournaments">Search Tournaments</string>
     
 </resources>
