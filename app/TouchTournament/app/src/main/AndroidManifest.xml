@@ -25,7 +25,7 @@
                 android:value="edu.psu.ist402.touchtournament.MainActivity" />
         </activity>
         <activity
-            android:name=".OpenExistingTournament"
+            android:name=".ExistingTournament"
             android:label="@string/title_activity_open_existing_tournament"
             android:parentActivityName=".MainActivity" >
             <meta-data
