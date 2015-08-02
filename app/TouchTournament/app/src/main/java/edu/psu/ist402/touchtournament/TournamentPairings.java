@@ -9,14 +9,35 @@ import android.widget.TableLayout;
 
 public class TournamentPairings extends ActionBarActivity {
 
+    int size;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tournament_pairings);
 
+        //insert code to bring in size here
+        size = 8;
+
+        //determine number of columns and rows
+
+        int tempSize = size;
+        int cols = 1;
+        int rows = 1;
+        int totalSpots = 0;
+
+        while(tempSize > 1){
+            rows = rows + tempSize;
+            cols++;
+            tempSize = tempSize / 2;
+        }
+
+
+
+
 
         TableLayout t1 = (TableLayout) findViewById(R.id.tourneyTableLayout);
-        t1.addView(row1);
+        //t1.addView(row1);
 
     }
 
