@@ -7,26 +7,36 @@
     tools:context="edu.psu.ist402.touchtournament.TournamentPairings">
 
 
-    <LinearLayout
-        android:id="@+id/bracket"
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="430dp"
-        android:layout_alignParentTop="true">
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollBracket" >
 
-        <TableLayout
+        <LinearLayout
+            android:id="@+id/bracket"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/tourneyTableLayout">
+            android:layout_alignParentTop="true"
+            android:layout_height="match_parent">
 
-        </TableLayout>
-    </LinearLayout>
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tourneyTableLayout">
+
+            </TableLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!--android:layout_below="@+id/scrollBracket"-->
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/bracket">
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true">
 
         <Button
             android:layout_width="wrap_content"

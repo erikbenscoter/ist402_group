@@ -2,9 +2,13 @@ package edu.psu.ist402.touchtournament;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AbsoluteLayout;
 import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 
 public class TournamentPairings extends ActionBarActivity {
@@ -17,7 +21,7 @@ public class TournamentPairings extends ActionBarActivity {
         setContentView(R.layout.activity_tournament_pairings);
 
         //insert code to bring in size here
-        size = 8;
+        size = 16;
 
         //determine number of columns and rows
 
@@ -32,12 +36,38 @@ public class TournamentPairings extends ActionBarActivity {
             tempSize = tempSize / 2;
         }
 
+        totalSpots = cols * rows;
 
+        Log.d("TournamentPairings", "Columns = " + cols + " Rows = " + rows +
+                " Total TextViews = " + totalSpots);
 
 
 
         TableLayout t1 = (TableLayout) findViewById(R.id.tourneyTableLayout);
         //t1.addView(row1);
+
+        TableRow[] tr = new TableRow[rows];
+        TextView[] tv = new TextView[totalSpots];
+
+        int initTVto;
+        int j = 0;
+
+        for (int i = 0; i < rows; i++){
+            tr[i] = new TableRow(this);
+            tr[i].setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+            t1.addView(tr[i]);
+
+            initTVto = (i + 1)*cols;
+
+            while (j < initTVto){
+                tv[j] = new TextView(this);
+                tv[j].setText("Test " + j + " ");
+                tr[i].addView(tv[j]);
+                j++;
+            }
+
+
+        }
 
     }
 

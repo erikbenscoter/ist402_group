@@ -1,9 +1,11 @@
 package edu.psu.ist402.touchtournament;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class Authenication extends ActionBarActivity {
@@ -34,5 +36,11 @@ public class Authenication extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void login(View view) {
+        Intent intent = new Intent (this, TournamentPairings.class);
+        startActivity(intent);
+
     }
 }

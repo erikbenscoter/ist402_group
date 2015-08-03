@@ -76,7 +76,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/layoutDate"
+            android:id="@+id/layoutButton"
             android:layout_below="@+id/layoutLocation"
             android:layout_weight="1">
 
@@ -101,7 +101,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/layoutSpacer"
-        android:layout_below="@+id/layoutDate"
+        android:layout_below="@+id/layoutButton"
         android:layout_weight="2">
 
         <TextView
