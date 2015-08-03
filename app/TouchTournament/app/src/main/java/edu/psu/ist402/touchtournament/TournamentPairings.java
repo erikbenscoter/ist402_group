@@ -19,6 +19,10 @@ public class TournamentPairings extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tournament_pairings);
+        /*
+        I can't figure out how to make the bracket dynamically so I will make a 4, 8, 16, and 32
+        spot bracket statically
+
 
         //insert code to bring in size here
         size = 16;
@@ -68,7 +72,7 @@ public class TournamentPairings extends ActionBarActivity {
 
 
         }
-
+        */
     }
 
     @Override
