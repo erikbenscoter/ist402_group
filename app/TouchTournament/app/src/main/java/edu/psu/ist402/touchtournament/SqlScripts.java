@@ -12,9 +12,7 @@ public class SqlScripts {
     //create user
     private static String m_UserCreation = "CREATE TABLE User(\n" +
             "UserEmail\tTEXT,\n" +
-            "UserName\tTEXT\t\tNULL,\n" +
-            "UserFName\tTEXT\t\tNOT NULL,\n" +
-            "UserLName\tTEXT\t\tNOT NULL,\n" +
+            "UserPassword\tTEXT\t\tNULL,\n" +
             "UserWin\t\tINT\t\tNULL,\n" +
             "UserLoss\tINT\t\tNULL\n" +
             ");";

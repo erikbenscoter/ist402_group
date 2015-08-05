@@ -12,7 +12,7 @@ import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
  */
 public class DatabaseCommunicator {
 
-    SQLiteDatabase m_db = null;
+    static SQLiteDatabase m_db = null;
     Context m_context;
 
     DatabaseCommunicator(Context p_context){
@@ -36,7 +36,7 @@ public class DatabaseCommunicator {
         return returnValue;
     }
 
-    public int CreateInsertQuery(String input){
+    public static int CreateInsertQuery(String input){
 
         m_db.execSQL(input);
 
@@ -44,11 +44,17 @@ public class DatabaseCommunicator {
         return 0;
     }
 
+    public static Cursor CreateFetchQuery(String input){
+
+        Cursor cursor = m_db.rawQuery(input,null);
+        return cursor;
+    }
 
     public int Init(){
 
         //open or create
         m_db = m_context.openOrCreateDatabase("TouchTournamentDatabase",Context.MODE_PRIVATE,null);
+
 
 
         int returnValue = 0;
@@ -62,7 +68,7 @@ public class DatabaseCommunicator {
         //return no errors
         return returnValue;
     }
-    public int CreateTables(){
+    public static int CreateTables(){
 
 
 

@@ -48,5 +48,6 @@
     <string name="title_activity_search_tournaments">Search Tournaments</string>
     <string name="title_activity_authenication">Authenication</string>
     <string name="title_activity_tournament_pairings">Tournament Pairings</string>
+    <string name="title_activity_create_account">CreateAccount</string>
     
 </resources>

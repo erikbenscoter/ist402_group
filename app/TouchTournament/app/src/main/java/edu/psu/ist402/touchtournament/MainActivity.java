@@ -66,6 +66,7 @@ public class MainActivity extends ActionBarActivity {
 
 
     public void CreateAccount(View view) {
-        Intent intent = new Intent(this, )
+        Intent intent = new Intent(this, CreateAccount.class);
+        startActivity(intent);
     }
 }
