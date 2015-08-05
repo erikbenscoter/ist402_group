@@ -1,7 +1,7 @@
 CREATE TABLE FollowTeam(
-FollowTeamID	ROWID,
-TeamID 		INT,
-UserID		INT,
+FollowTeamID	INT(6)	AUTO_INCREMENT PRIMARY KEY,
+TeamID 			INT(6),
+UserID			INT(6),
 FOREIGN KEY(TeamID)
 	REFERENCES Team(TeamID),
 FOREIGN KEY(UserID)
