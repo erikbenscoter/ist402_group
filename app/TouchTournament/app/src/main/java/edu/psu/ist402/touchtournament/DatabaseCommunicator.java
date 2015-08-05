@@ -3,6 +3,7 @@ package edu.psu.ist402.touchtournament;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.widget.Toast;
 
 import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
@@ -21,16 +22,16 @@ public class DatabaseCommunicator {
     
     public boolean DoesTableExist(){
 
-        boolean returnValue = false;
+        boolean returnValue = true;
 
         try{
             //query the User table
-            Cursor myCursor = m_db.rawQuery("Select * from Users", null);
-            returnValue = true;
+            Cursor myCursor = m_db.rawQuery("Select * from User", null);
+            //returnValue = true;
         }catch (Exception e){
+            Log.d("DatabaseCommunicator", "error Quering User", e);
            returnValue = false;
         }
-
 
 
         return returnValue;
@@ -59,9 +60,12 @@ public class DatabaseCommunicator {
 
         int returnValue = 0;
 
+
+
         //check to see if table exists,
         //if it doesn't::
         if(!DoesTableExist()){
+            Log.d("DatabaseCommunicator", "Tables do not exist");
             returnValue = CreateTables();
         }
 
@@ -82,10 +86,10 @@ public class DatabaseCommunicator {
             m_db.execSQL(SqlScripts.getM_FollowTeamTableCreation());
             m_db.execSQL(SqlScripts.getM_MatchTableCreation());
         }catch (Exception e){
-            System.out.println("####ERROR### couldn't create tables");
+            Log.d("DatabaseCommunicator", "####ERROR### couldn't create tables", e);
             return  -1;
         }
-
+        Log.d("DatabaseCommunicator", "tables created sucessfully");
         //return no errors
         return 0;
 
