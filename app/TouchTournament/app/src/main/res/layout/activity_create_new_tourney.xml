@@ -45,7 +45,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText" />
+                android:id="@+id/EditTextTournamentName" />
         </LinearLayout>
 
         <!--Type of Tourney Section-->
@@ -113,7 +113,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText" />
+                android:id="@+id/EditTextLocation" />
         </LinearLayout>
 
         <LinearLayout
@@ -131,7 +131,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText" />
+                android:id="@+id/EditTextBeginningDate" />
         </LinearLayout>
 
         <LinearLayout
@@ -149,7 +149,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText" />
+                android:id="@+id/EditTextEndingDate" />
         </LinearLayout>
 
         <LinearLayout
@@ -167,7 +167,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText" />
+                android:id="@+id/EditTextUserName" />
         </LinearLayout>
 
         <LinearLayout
@@ -185,7 +185,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText" />
+                android:id="@+id/EditTextPassword" />
         </LinearLayout>
 
         <Button
@@ -193,6 +193,7 @@
             android:layout_height="fill_parent"
             android:text="Create"
             android:id="@+id/button"
+            android:onClick="SubmitForm"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1" />
 

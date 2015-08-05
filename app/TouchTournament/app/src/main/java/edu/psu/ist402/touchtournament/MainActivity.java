@@ -10,10 +10,15 @@ import android.view.View;
 
 public class MainActivity extends ActionBarActivity {
 
+    DatabaseCommunicator m_myDbCommunicator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        m_myDbCommunicator = new DatabaseCommunicator(this);
+        m_myDbCommunicator.Init();
+
     }
 
     @Override
@@ -57,5 +62,10 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent (this, SearchTournaments.class);
         startActivity(intent);
 
+    }
+
+
+    public void CreateAccount(View view) {
+        Intent intent = new Intent(this, )
     }
 }

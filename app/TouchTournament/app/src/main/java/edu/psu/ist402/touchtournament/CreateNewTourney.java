@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class CreateNewTourney extends ActionBarActivity {
@@ -13,6 +14,22 @@ public class CreateNewTourney extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_tourney);
     }
+
+
+    public void CollectFields(){
+
+    }
+
+    public void SubmitForm(View view) {
+
+
+
+    }
+
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

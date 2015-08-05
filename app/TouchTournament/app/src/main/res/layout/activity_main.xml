@@ -11,6 +11,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/banner">
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Account"
+            android:id="@+id/ButtonCreateAccount"
+            android:onClick="CreateAccount"
+            android:layout_gravity="right" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
