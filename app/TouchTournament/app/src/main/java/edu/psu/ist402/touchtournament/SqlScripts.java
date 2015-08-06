@@ -73,11 +73,12 @@ public class SqlScripts {
             ");";
 
     //create admin table
-    private static String m_CreateAdminTable = "Create Table Client(\n" +
-            "ClientID\tROWID,\n" +
+    private static String m_CreateAdminTable = "Create Table Admin(\n" +
+            "AdminID\tROWID,\n" +
+            "AdminEmail\tTEXT,\n"+
             "TournamentID\tI\t\tNOT NULL,\n" +
-            "FOREIGN KEY(ClientID)\n" +
-            "\tREFERENCES User(UserID),\n" +
+            "FOREIGN KEY(AdminEmail)\n" +
+            "\tREFERENCES User(UserEmail),\n" +
             "FOREIGN KEY(TournamentID)\n" +
             "\tREFERENCES Tournament(TournamentID)\n" +
             ");";

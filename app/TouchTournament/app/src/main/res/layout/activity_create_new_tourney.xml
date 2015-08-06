@@ -45,7 +45,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/EditTextTournamentName" />
+                android:id="@+id/TextViewTournamentName" />
         </LinearLayout>
 
         <!--Type of Tourney Section-->
@@ -113,7 +113,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/EditTextLocation" />
+                android:id="@+id/TextViewLocation" />
         </LinearLayout>
 
         <LinearLayout
@@ -131,7 +131,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/EditTextBeginningDate" />
+                android:id="@+id/TextViewBeginningDate" />
         </LinearLayout>
 
         <LinearLayout
@@ -149,7 +149,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/EditTextEndingDate" />
+                android:id="@+id/TextViewEndingDate" />
         </LinearLayout>
 
         <LinearLayout
@@ -161,13 +161,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Username"
+                android:text="Email"
                 android:id="@+id/textView4" />
 
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/EditTextUserName" />
+                android:id="@+id/TextViewEmailCreateTourney" />
         </LinearLayout>
 
         <LinearLayout
@@ -185,7 +185,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/EditTextPassword" />
+                android:id="@+id/TextViewPassword" />
         </LinearLayout>
 
         <Button

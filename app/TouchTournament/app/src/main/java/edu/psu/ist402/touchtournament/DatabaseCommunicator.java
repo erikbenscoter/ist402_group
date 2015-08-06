@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
+import static android.database.sqlite.SQLiteDatabase.deleteDatabase;
 import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
 
 /**
@@ -13,13 +14,27 @@ import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
  */
 public class DatabaseCommunicator {
 
+
+
+    ///////////////////////////////////////////////////////////////////////////
+    //							Member Variables
+    ///////////////////////////////////////////////////////////////////////////
     static SQLiteDatabase m_db = null;
-    Context m_context;
+    static Context m_context;
+    private boolean inTest = true;
+    final private String m_DATABASENAME = "TouchTournamentDatabase";
+
+    ///////////////////////////////////////////////////////////////////////////
+    //							Constructor
+    ///////////////////////////////////////////////////////////////////////////
 
     DatabaseCommunicator(Context p_context){
         m_context = p_context;
     }
     
+    ///////////////////////////////////////////////////////////////////////////
+    //						Function To	Check if table exists
+    ///////////////////////////////////////////////////////////////////////////
     public boolean DoesTableExist(){
 
         boolean returnValue = true;
@@ -29,7 +44,7 @@ public class DatabaseCommunicator {
             Cursor myCursor = m_db.rawQuery("Select * from User", null);
             //returnValue = true;
         }catch (Exception e){
-            Log.d("DatabaseCommunicator", "error Quering User", e);
+            Log.d("DatabaseCommunicator", "error Querying User", e);
            returnValue = false;
         }
 
@@ -37,6 +52,10 @@ public class DatabaseCommunicator {
         return returnValue;
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    //						Function To	Run Query 
+    //						Against the Database
+    ///////////////////////////////////////////////////////////////////////////
     public static int CreateInsertQuery(String input){
 
         m_db.execSQL(input);
@@ -45,19 +64,33 @@ public class DatabaseCommunicator {
         return 0;
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    //						Function to Run Query
+    //						Against the Database
+    //						Where Data Is Expected
+   	//						To Be Returned
+    ///////////////////////////////////////////////////////////////////////////
     public static Cursor CreateFetchQuery(String input){
 
         Cursor cursor = m_db.rawQuery(input,null);
         return cursor;
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    //						Function To Open Database
+    //						Or Make It If It Does Not
+    ///////////////////////////////////////////////////////////////////////////
     public int Init(){
 
+        //if we are in testing situation start with a fresh db
+        if( inTest ){
+            RemoveDB();
+        }
+
         //open or create
-        m_db = m_context.openOrCreateDatabase("TouchTournamentDatabase",Context.MODE_PRIVATE,null);
+        m_db = m_context.openOrCreateDatabase(m_DATABASENAME,Context.MODE_PRIVATE,null);
 
-
-
+        //no errors
         int returnValue = 0;
 
 
@@ -72,6 +105,10 @@ public class DatabaseCommunicator {
         //return no errors
         return returnValue;
     }
+
+    ///////////////////////////////////////////////////////////////////////////
+    //						Function To	Create Tables
+    ///////////////////////////////////////////////////////////////////////////
     public static int CreateTables(){
 
 
@@ -95,4 +132,50 @@ public class DatabaseCommunicator {
 
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    //						Function To	Drop Tables
+    //						And Their Information (Testing Purposes)
+    ///////////////////////////////////////////////////////////////////////////
+    protected int RemoveDB(){
+
+    	m_context.deleteDatabase(m_DATABASENAME);
+    	
+        //return successful
+        return 0;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    //						Function To	Authenticate User
+    ///////////////////////////////////////////////////////////////////////////
+    public static boolean IsLegitimate(String p_email, String p_password){
+
+        //create query
+
+        Cursor myCursor = CreateFetchQuery("SELECT * FROM User" +
+                " WHERE UserEmail='"+p_email+"'");
+
+        int matches = myCursor.getCount();
+
+        //declare and initiate the return value
+        boolean returnValue = false;
+
+        //if there is atleast one person with that username and password
+        //then return true, otherwise return false
+        if( matches > 0 ){
+            returnValue = true;
+        }else{
+            returnValue = false;
+        }
+
+        return returnValue;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    //							Reset the Context
+    ///////////////////////////////////////////////////////////////////////////
+    public static void setM_context(Context p_context) {
+        m_context = p_context;
+    }
 }
+
+

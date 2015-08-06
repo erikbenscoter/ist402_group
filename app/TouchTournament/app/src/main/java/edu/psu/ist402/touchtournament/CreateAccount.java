@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -53,26 +55,34 @@ public class CreateAccount extends ActionBarActivity {
 
         //create the query
         String myInputQuery = "INSERT INTO User(UserEmail, UserPassword, UserWin, UserLoss)" +
-                "VALUES("+emailInput +","+passwordInput+", 0 ,0 )";
+                "VALUES('"+emailInput +"','"+passwordInput+"', 0 ,0 )";
+
 
         //run the query
         DatabaseCommunicator.CreateInsertQuery(myInputQuery);
 
-        //test
-        Cursor myCursor = DatabaseCommunicator.CreateFetchQuery("SELECT * FROM User");
 
+        //get the email from the db
+        Cursor myCursor = DatabaseCommunicator.CreateFetchQuery("SELECT UserEmail,UserPassword FROM User" +
+                                                                " WHERE UserEmail='"+emailInput+"'");
+
+        //move to the first result spot and add it to the string
         myCursor.moveToFirst();
-        String myOutput = "";
+        String email = "";
+        email = email + myCursor.getString(0);
+        email = email + myCursor.getString(1);
 
+
+        //cycle through the rows (if any) and add them to email
         while(myCursor.moveToNext()){
-            myOutput += myCursor.getString(0);
-            myOutput += myCursor.getString(1);
-            myOutput += myCursor.getString(2);
-            myOutput += myCursor.getString(3);
+            email += myCursor.getString(0);
         }
 
-        Toast.makeText(this.getApplicationContext(),myOutput,Toast.LENGTH_LONG).show();
-        //Toast.makeText(this.getApplicationContext(),"Thank you",Toast.LENGTH_LONG).show();
+        //grab the welcome box
+        TextView welcomeMsg = (TextView) findViewById(R.id.EditTextWelcomeMsg);
+        welcomeMsg.setText("thank you, " + email + ", you have been successfully added");
+        welcomeMsg.setFocusable(false);
+
 
     }
 }
