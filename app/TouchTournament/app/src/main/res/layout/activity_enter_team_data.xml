@@ -3,7 +3,7 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".CreateNewTourney">
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".EnterTeamData">
 
     <!--Banner section-->
     <LinearLayout
@@ -34,12 +34,27 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Replace with  team Number#/ofTotal"
+                android:id="@+id/textView8"
+                android:gravity="center_horizontal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
             android:layout_weight="1">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tournament Name:"
+                android:text="Team Name"
                 android:id="@+id/textView4" />
 
             <EditText
@@ -53,23 +68,51 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:weightSum="2">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Type of Tournament:"
-                android:id="@+id/textView4"
-                android:layout_gravity="bottom|left"
-                android:gravity="center_vertical" />
+                android:layout_weight="1">
 
-            <Spinner
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/tourneyType"
-                android:spinnerMode="dialog"
-                android:entries="@array/tourney_type_list"
-                android:gravity="center_vertical" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Wins"
+                    android:id="@+id/textView4"
+                    android:layout_gravity="bottom|left"
+                    android:gravity="center_vertical" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText2"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:text="Losses"
+                    android:id="@+id/textView9"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/editText6"
+                    android:layout_weight="1" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -83,18 +126,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Number of Participants"
+                android:text="Seed"
                 android:id="@+id/numberParticipants"
                 android:layout_gravity="bottom|left"
                 android:gravity="center_vertical" />
 
-            <Spinner
+            <EditText
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/noOfParticipants"
-                android:spinnerMode="dialog"
-                android:entries="@array/number_of_participants"
-                android:gravity="center_vertical" />
+                android:layout_height="wrap_content"
+                android:id="@+id/editText3" />
 
         </LinearLayout>
 
@@ -107,7 +147,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Location"
+                android:text="City"
                 android:id="@+id/textView4" />
 
             <EditText
@@ -125,13 +165,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Beginning Date"
+                android:text="State"
                 android:id="@+id/textView4" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/TextViewBeginningDate"
+                android:id="@+id/editText4"
                 android:layout_weight="1" />
 
         </LinearLayout>
@@ -145,27 +185,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ending Date"
-                android:id="@+id/textView4" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/TextViewEndingDate"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email"
+                android:text="Contact email address"
                 android:id="@+id/textView4" />
 
             <EditText
@@ -180,22 +200,12 @@
             android:layout_height="fill_parent"
             android:layout_weight="1">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Password"
-                android:id="@+id/textView4" />
-
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/TextViewPassword" />
         </LinearLayout>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:text="Create"
+            android:text="Add Team"
             android:id="@+id/button"
             android:onClick="SubmitForm"
             android:layout_gravity="center_horizontal"
@@ -203,3 +213,4 @@
 
     </LinearLayout>
 </RelativeLayout>
+

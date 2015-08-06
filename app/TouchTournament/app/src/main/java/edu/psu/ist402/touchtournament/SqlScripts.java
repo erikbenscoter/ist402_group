@@ -10,6 +10,12 @@ public class SqlScripts {
     ///////////////////////////////////////////////////////////////////////////
 
     //create user
+
+    /*private static String m_UserCreation = "CREATE TABLE User (UserEmail TEXT, UserPassword TEXT, UserWin INT, UserLoss INT," +
+            " UserID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL);";*/
+
+
+
     private static String m_UserCreation = "CREATE TABLE User(\n" +
             "UserEmail\tTEXT,\n" +
             "UserPassword\tTEXT\t\tNULL,\n" +
@@ -18,6 +24,13 @@ public class SqlScripts {
             ");";
 
     //create a TournamentTable
+
+ /*   private static String m_TournamentTableCreation = "CREATE TABLE Tournament (TournamentID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+            " TournamentName TEXT NOT NULL, TournamentActive BOOLEAN, TournamentLocation TEXT NOT NULL, Winner INT, beginDate DATE," +
+            " endDate DATE, TournamentType VARCHAR, FOREIGN KEY (Winner) REFERENCES Team (TeamID));";*/
+
+
+
     private static String m_TournamentTableCreation = "CREATE TABLE Tournament(\n" +
             "TournamentID\t\tROWID,\n" +
             "TournamentName\t\tTEXT\t\tNOT NULL,\n" +
@@ -28,7 +41,10 @@ public class SqlScripts {
             "REFERENCES Team(TeamID)\n" +
             ");";
 
+
+
     //create Team Table
+
     private static String m_TeamTableCreation = "Create Table Team(\n" +
             "TeamID\t\tROWID,\n" +
             "TeamName\tTEXT\t\tNOT NULL,\n" +
@@ -73,6 +89,12 @@ public class SqlScripts {
             ");";
 
     //create admin table
+
+
+/*    private static String m_CreateAdminTable = "CREATE TABLE Admin (AdminID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
+            " AdminEmail TEXT, TournamentID I NOT NULL, FOREIGN KEY (AdminEmail) REFERENCES User (UserEmail)," +
+            " FOREIGN KEY (TournamentID) REFERENCES Tournament (TournamentID));";*/
+
     private static String m_CreateAdminTable = "Create Table Admin(\n" +
             "AdminID\tROWID,\n" +
             "AdminEmail\tTEXT,\n"+

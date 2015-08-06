@@ -30,7 +30,7 @@ public class CreateNewTourney extends ActionBarActivity {
     private String m_email = "";
     private String m_password = "";
 
-    private String m_typeOfTournement = "";
+    private String m_TournementType = "";
     private int m_numberOfParticipants = 0;
 
 
@@ -53,7 +53,7 @@ public class CreateNewTourney extends ActionBarActivity {
         m_numberOfParticipants = Integer.parseInt(tmpNumberOfParticipants);
 
         //get the type of tourney
-        m_typeOfTournement = ((Spinner)findViewById(R.id.tourneyType)).getSelectedItem().toString();
+        m_TournementType = ((Spinner)findViewById(R.id.tourneyType)).getSelectedItem().toString();
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -77,8 +77,8 @@ public class CreateNewTourney extends ActionBarActivity {
 
         //create query to insert into Tournament Table
         String myQuery;
-        myQuery = "INSERT INTO Tournament(TournamentName,TournamentActive,TournamentLocation)" +
-                    "VALUES('"+m_TourneyName+"','1','"+m_Location+"')";
+        myQuery = "INSERT INTO Tournament(TournamentName,TournamentActive,TournamentLocation,TournamentType)" +
+                    "VALUES('"+m_TourneyName+"','1','"+m_Location+"','"+m_TournementType+"')";
 
         //execute query
         DatabaseCommunicator.CreateInsertQuery(myQuery);

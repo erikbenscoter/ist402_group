@@ -6,18 +6,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class openExistingTournament extends ActionBarActivity {
+public class EnterTeamData extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_open_existing_tournament);
+        setContentView(R.layout.activity_enter_team_data);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_open_existing_tournament, menu);
+        getMenuInflater().inflate(R.menu.menu_enter_team_data, menu);
         return true;
     }
 

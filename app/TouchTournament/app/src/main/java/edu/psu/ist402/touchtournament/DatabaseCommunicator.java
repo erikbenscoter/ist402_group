@@ -3,6 +3,7 @@ package edu.psu.ist402.touchtournament;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -176,6 +177,11 @@ public class DatabaseCommunicator {
     public static void setM_context(Context p_context) {
         m_context = p_context;
     }
+
+
+
+
+
 }
 
 

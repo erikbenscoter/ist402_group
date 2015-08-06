@@ -76,8 +76,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.psu.ist402.touchtournament.MainActivity" />
         </activity>
-
-
+        <activity
+            android:name=".EnterTeamData"
+            android:label="@string/title_activity_enter_team_data"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.psu.ist402.touchtournament.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
