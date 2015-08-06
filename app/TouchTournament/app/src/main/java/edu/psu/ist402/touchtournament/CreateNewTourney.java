@@ -1,5 +1,6 @@
 package edu.psu.ist402.touchtournament;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
@@ -99,6 +100,9 @@ public class CreateNewTourney extends ActionBarActivity {
                     "VALUES('"+m_email+"', "+tournamentID+")";
 
         Toast.makeText(getApplicationContext(),"Congratulations your tournament has been created",Toast.LENGTH_LONG);
+
+        Intent intent = new Intent(this, EnterTeamData.class);
+        startActivity(intent);
 
     }
 
