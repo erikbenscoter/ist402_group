@@ -11,10 +11,6 @@ public class SqlScripts {
 
     //create user
 
-    /*private static String m_UserCreation = "CREATE TABLE User (UserEmail TEXT, UserPassword TEXT, UserWin INT, UserLoss INT," +
-            " UserID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL);";*/
-
-
 
     private static String m_UserCreation = "CREATE TABLE User(\n" +
             "UserEmail\tTEXT,\n" +
@@ -25,13 +21,15 @@ public class SqlScripts {
 
     //create a TournamentTable
 
- /*   private static String m_TournamentTableCreation = "CREATE TABLE Tournament (TournamentID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-            " TournamentName TEXT NOT NULL, TournamentActive BOOLEAN, TournamentLocation TEXT NOT NULL, Winner INT, beginDate DATE," +
-            " endDate DATE, TournamentType VARCHAR, FOREIGN KEY (Winner) REFERENCES Team (TeamID));";*/
+    //added BeginDate, EndDate, TournamentType fields
+
+    private static String m_TournamentTableCreation = "CREATE TABLE Tournament (TournamentID ROWID," +
+            " TournamentName TEXT NOT NULL, TournamentActive BOOLEAN, TournamentLocation TEXT NOT NULL," +
+            " Winner INT, BeginDate DATE, EndDate DATE, TournamentType TEXT," +
+            " FOREIGN KEY (Winner) REFERENCES Team (TeamID));";
 
 
-
-    private static String m_TournamentTableCreation = "CREATE TABLE Tournament(\n" +
+   /* private static String m_TournamentTableCreation = "CREATE TABLE Tournament(\n" +
             "TournamentID\t\tROWID,\n" +
             "TournamentName\t\tTEXT\t\tNOT NULL,\n" +
             "TournamentActive\tBOOLEAN,\n" +
@@ -39,18 +37,25 @@ public class SqlScripts {
             "Winner\t\t\tINT,\n" +
             "FOREIGN KEY(Winner)\n" +
             "REFERENCES Team(TeamID)\n" +
-            ");";
+            ");";*/
 
 
 
     //create Team Table
 
-    private static String m_TeamTableCreation = "Create Table Team(\n" +
+    //changed Win -> Wins, Loss -> Losses
+    //added Seed, City, State, and ContactEmail
+
+
+    private static String m_TeamTableCreation = "CREATE TABLE Team (TeamID ROWID, TeamName TEXT NOT NULL," +
+            " Wins INT NOT NULL, Losses INT NOT NULL, Seed INT, City TEXT, State TEXT, ContactEmail TEXT);";
+
+/*    private static String m_TeamTableCreation = "Create Table Team(\n" +
             "TeamID\t\tROWID,\n" +
             "TeamName\tTEXT\t\tNOT NULL,\n" +
             "Win\t\tINT\t\tNOT NULL,\n" +
             "Loss\t\tINT\t\tNOT NULL\n" +
-            ");";
+            ");";*/
 
     //create match table
     private static String m_MatchTableCreation = "Create Table Match(\n" +
@@ -89,11 +94,6 @@ public class SqlScripts {
             ");";
 
     //create admin table
-
-
-/*    private static String m_CreateAdminTable = "CREATE TABLE Admin (AdminID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-            " AdminEmail TEXT, TournamentID I NOT NULL, FOREIGN KEY (AdminEmail) REFERENCES User (UserEmail)," +
-            " FOREIGN KEY (TournamentID) REFERENCES Tournament (TournamentID));";*/
 
     private static String m_CreateAdminTable = "Create Table Admin(\n" +
             "AdminID\tROWID,\n" +
