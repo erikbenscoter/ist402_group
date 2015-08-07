@@ -53,21 +53,14 @@ public class CreateAccount extends ActionBarActivity {
         String emailInput = editTextEmail.getText().toString();
         String passwordInput = editTextPassword.getText().toString();
 
+        //create the query
         String myInputQuery = "INSERT INTO User(UserEmail, UserPassword, UserWin, UserLoss)" +
                 "VALUES('"+emailInput +"','"+passwordInput+"', 0 ,0 )";
 
-        //create the query
-        try{
-            DatabaseCommunicator.CreateInsertQuery(myInputQuery);
-        }
-        catch(Exception e){
-            Toast.makeText(getApplicationContext(), "You must select a unique email address", Toast.LENGTH_LONG).show();
-        }
-
-
-
-
         //run the query
+        DatabaseCommunicator.CreateInsertQuery(myInputQuery, "Invalid email address!  " +
+                "That email address is already used is our system.  Please select another.");
+
 
 
 
@@ -87,10 +80,15 @@ public class CreateAccount extends ActionBarActivity {
             email += myCursor.getString(0);
         }
 
+        /*
         //grab the welcome box
+
         TextView welcomeMsg = (TextView) findViewById(R.id.EditTextWelcomeMsg);
         welcomeMsg.setText("thank you, " + email + ", you have been successfully added");
-        welcomeMsg.setFocusable(false);
+        welcomeMsg.setFocusable(false);*/
+
+        //Toast welcome
+
 
 
     }

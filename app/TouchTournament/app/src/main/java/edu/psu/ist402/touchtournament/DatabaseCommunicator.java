@@ -57,6 +57,7 @@ public class DatabaseCommunicator {
     //						Function To	Run Query 
     //						Against the Database
     ///////////////////////////////////////////////////////////////////////////
+    //         Database Insert Query Catching error messages from DB
     public static int CreateInsertQuery(String input){
 
         try{
@@ -64,6 +65,19 @@ public class DatabaseCommunicator {
             m_db.execSQL(input);
         }catch (Exception e){
             Toast.makeText(m_context, e.toString(), Toast.LENGTH_LONG).show();
+        }
+
+        //return no errors
+        return 0;
+    }
+    //      Database Insert Query Catching Custom error messages
+    public static int CreateInsertQuery(String input, String error){
+
+        try{
+
+            m_db.execSQL(input);
+        }catch (Exception e){
+            Toast.makeText(m_context, error, Toast.LENGTH_LONG).show();
         }
 
         //return no errors
