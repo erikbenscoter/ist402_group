@@ -11,13 +11,17 @@ public class SqlScripts {
 
     //create user
 
+    private static String m_UserCreation = "CREATE TABLE User (UserEmail TEXT UNIQUE NOT NULL," +
+            " UserPassword TEXT, " +
+            "UserWin INT, " +
+            "UserLoss INT);";
 
-    private static String m_UserCreation = "CREATE TABLE User(\n" +
+    /*private static String m_UserCreation = "CREATE TABLE User(\n" +
             "UserEmail\tTEXT,\n" +
             "UserPassword\tTEXT\t\tNULL,\n" +
             "UserWin\t\tINT\t\tNULL,\n" +
             "UserLoss\tINT\t\tNULL\n" +
-            ");";
+            ");";*/
 
     //create a TournamentTable
 
