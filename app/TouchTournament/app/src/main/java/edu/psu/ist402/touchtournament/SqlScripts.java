@@ -53,7 +53,8 @@ public class SqlScripts {
     //create Team Table
 
     //changed Win -> Wins, Loss -> Losses
-    //added Seed, City, State, and ContactEmail
+    //added City, State, and ContactEmail
+
 
 
     private static String m_TeamTableCreation = "CREATE TABLE Team (" +
@@ -61,7 +62,6 @@ public class SqlScripts {
             "TeamName TEXT NOT NULL, " +
             "Wins INT NOT NULL, " +
             "Losses INT NOT NULL, " +
-            "Seed INT, " +
             "City TEXT, " +
             "State TEXT, " +
             "ContactEmail TEXT);";
@@ -74,7 +74,15 @@ public class SqlScripts {
             ");";*/
 
     //create match table
-    private static String m_MatchTableCreation = "Create Table Match(\n" +
+
+    private static String m_MatchTableCreation = "CREATE TABLE Seeding (MatchID ROWID," +
+            " TournamentID INT NOT NULL," +
+            " Team1ID INT NOT NULL, " +
+            "Seed INT NOT NULL, " +
+            "FOREIGN KEY (TournamentID) REFERENCES Tournament (TournamentID), " +
+            "FOREIGN KEY (Team1ID) REFERENCES Team (TeamID));";
+
+    /*private static String m_MatchTableCreation = "Create Table Seeding(\n" +
             "MatchID\t\tROWID,\n" +
             "TournamentID\tINT\t\tNOT NULL,\n" +
             "Team1ID\t\tINT\t\tNOT NULL,\n" +
@@ -86,7 +94,7 @@ public class SqlScripts {
             "\tREFERENCES Team(TeamID),\n" +
             "FOREIGN KEY(Team2ID)\n" +
             "\tREFERENCES Team(Team2ID)\n" +
-            ");";
+            ");";*/
 
     //create followTeamTableCreation
     private static String m_FollowTeamTableCreation = "CREATE TABLE FollowTeam(\n" +
