@@ -65,14 +65,13 @@ public class CreateAccount extends ActionBarActivity {
 
 
         //get the email from the db
-        Cursor myCursor = DatabaseCommunicator.CreateFetchQuery("SELECT UserEmail,UserPassword FROM User" +
+        Cursor myCursor = DatabaseCommunicator.CreateFetchQuery("SELECT UserEmail FROM User" +
                                                                 " WHERE UserEmail='"+emailInput+"'");
 
         //move to the first result spot and add it to the string
         myCursor.moveToFirst();
         String email = "";
         email = email + myCursor.getString(0);
-        email = email + myCursor.getString(1);
 
 
         //cycle through the rows (if any) and add them to email
@@ -88,7 +87,7 @@ public class CreateAccount extends ActionBarActivity {
         welcomeMsg.setFocusable(false);*/
 
         //Toast welcome
-
+        Toast.makeText(getApplicationContext(),"Congratulations " + email + ", Your Email and Password has been accepted!",Toast.LENGTH_LONG).show();
 
 
     }
