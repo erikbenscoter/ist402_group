@@ -102,6 +102,8 @@ public class CreateNewTourney extends ActionBarActivity {
         Toast.makeText(getApplicationContext(),"Congratulations your tournament has been created",Toast.LENGTH_LONG);
 
         Intent intent = new Intent(this, EnterTeamData.class);
+        intent.putExtra("TournamentID",tournamentID);
+        intent.putExtra("NumberTeams", m_numberOfParticipants);
         startActivity(intent);
 
     }

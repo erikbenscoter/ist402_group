@@ -1,5 +1,6 @@
 package edu.psu.ist402.touchtournament;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,12 +22,22 @@ public class EnterTeamData extends ActionBarActivity {
     private String m_teamCity = "";
     private String m_teamState = "";
     private String m_teamEmail = "";
+    private int m_tournamentID;
+    private int m_numberParticipants;
+    private int m_numberParticipantsLeft;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_team_data);
+
+        //get the tournament id
+        m_tournamentID = getIntent().getIntExtra("tournamentID",-10);
+        m_numberParticipants = getIntent().getIntExtra("NumberTeams", -10);
+
+        m_numberParticipantsLeft = m_numberParticipants;
+
     }
 
     @Override
@@ -94,13 +105,15 @@ public class EnterTeamData extends ActionBarActivity {
 
     public void PushData(){
 
-        //create query
+        //create query to insert into team table
         String myQuery = "INSERT INTO Team(TeamName, Wins, Losses, Seed, City, State, ContactEmail) "+
                             "VALUES('"+m_teamName+"','"+m_teamWins+"','"+m_teamLosses+"'," +
                             "'"+m_teamSeed+"','"+m_teamCity+"','"+m_teamState+"','"+m_teamEmail+"')";
 
         //execute query
         DatabaseCommunicator.CreateInsertQuery(myQuery);
+
+
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -115,8 +128,23 @@ public class EnterTeamData extends ActionBarActivity {
         //push the data to the database
         PushData();
 
-        //tell them they were successful
-        Toast.makeText(getApplicationContext(),"Team Added",Toast.LENGTH_LONG);
+
+
+        //remove 1 from the participants left
+        m_numberParticipantsLeft -= 1;
+
+        //if there are no participants left to add thank them and exit to the main screen
+        if(m_numberParticipantsLeft == 0){
+
+            Toast.makeText(getApplicationContext(),"Thank you your final team was added",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+        }else{
+
+            //tell them they were successful
+            Toast.makeText(getApplicationContext(),"Team Added",Toast.LENGTH_LONG).show();
+        }
+
 
         //startover so they can add more
         ClearForm();
