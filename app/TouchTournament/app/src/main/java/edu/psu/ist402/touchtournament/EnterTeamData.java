@@ -123,53 +123,7 @@ public class EnterTeamData extends ActionBarActivity {
 
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    //						Function To Generate
-    //                   Matches and Push That Data
-    //                          To The Server
-    ///////////////////////////////////////////////////////////////////////////
 
-    public void GenerateAndPushMatches(){
-
-        //itterators
-        int topItt = 0;
-        int bottomItt = m_numberParticipants - 1;
-        int matchNumber = 0;
-
-        //cycle through the array
-        while ( topItt != bottomItt ){
-
-            //IDs of the 2 teams
-            int topID = m_arrParticipants[topItt];
-            int bottomID = m_arrParticipants[bottomItt];
-
-            //generate the query
-            String myQuery = "INSERT INTO Match(TournamentID,Team1ID,Team2ID,MatchNumber)" +
-                                "VALUES('"+m_tournamentID+"','"+topID+"','"+bottomID+"','"+matchNumber+"')";
-
-            //execute the query
-            DatabaseCommunicator.CreateInsertQuery(myQuery);
-
-
-            //increment the match number
-            matchNumber ++;
-
-            //move the itterators
-            topItt ++;
-            bottomItt --;
-
-        }
-
-        //create query to insert into team table
-        String myQuery = "INSERT INTO Team(TeamName, Wins, Losses, Seed, City, State, ContactEmail) "+
-                "VALUES('"+m_teamName+"','"+m_teamWins+"','"+m_teamLosses+"'," +
-                "'"+m_teamSeed+"','"+m_teamCity+"','"+m_teamState+"','"+m_teamEmail+"')";
-
-        //execute query
-        DatabaseCommunicator.CreateInsertQuery(myQuery);
-
-
-    }
 
     ///////////////////////////////////////////////////////////////////////////
     //						Function To Handle
@@ -196,9 +150,7 @@ public class EnterTeamData extends ActionBarActivity {
         if(m_numberParticipantsLeft == 0){
 
             Toast.makeText(getApplicationContext(),"Thank you your final team was added",Toast.LENGTH_LONG).show();
-
-            //generate the matches
-            GenerateAndPushMatches();
+            
 
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
