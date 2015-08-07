@@ -22,7 +22,7 @@ public class DatabaseCommunicator {
     ///////////////////////////////////////////////////////////////////////////
     static SQLiteDatabase m_db = null;
     static Context m_context;
-    private boolean inTest = false;
+    private boolean inTest = true;
     final private String m_DATABASENAME = "TouchTournamentDatabase";
 
     ///////////////////////////////////////////////////////////////////////////
