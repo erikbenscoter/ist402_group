@@ -145,8 +145,12 @@ public class CreateNewTourney extends ActionBarActivity {
 
         //create query to insert into Tournament Table
         String myQuery;
-        myQuery = "INSERT INTO Tournament(TournamentName,TournamentLocation,TournamentType)" +
-                    "VALUES('"+m_TourneyName+"','"+m_Location+"','"+m_TournementType+"')";
+        myQuery = "INSERT INTO Tournament(TournamentName,TournamentActive,TournamentLocation," +
+                "BeginDate,EndDate,TournamentType)" +
+                    "VALUES('"+m_TourneyName+"','1','"+m_Location+"','"+m_beginningDate+"','"+
+                m_endingDate+"','"+m_TournementType+"')";
+
+        Log.d("CreateNewTourney", "SQL insert = " + myQuery);
 
         //execute query
         DatabaseCommunicator.CreateInsertQuery(myQuery);
