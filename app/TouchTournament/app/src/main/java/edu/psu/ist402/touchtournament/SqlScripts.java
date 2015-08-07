@@ -24,8 +24,13 @@ public class SqlScripts {
     //added BeginDate, EndDate, TournamentType fields
 
     private static String m_TournamentTableCreation = "CREATE TABLE Tournament (TournamentID ROWID," +
-            " TournamentName TEXT NOT NULL, TournamentActive BOOLEAN, TournamentLocation TEXT NOT NULL," +
-            " Winner INT, BeginDate DATE, EndDate DATE, TournamentType TEXT," +
+            " TournamentName TEXT NOT NULL, " +
+            "TournamentActive BOOLEAN, " +
+            "TournamentLocation TEXT NOT NULL," +
+            " Winner INT, " +
+            "BeginDate DATE, " +
+            "EndDate DATE, " +
+            "TournamentType TEXT," +
             " FOREIGN KEY (Winner) REFERENCES Team (TeamID));";
 
 
@@ -47,8 +52,15 @@ public class SqlScripts {
     //added Seed, City, State, and ContactEmail
 
 
-    private static String m_TeamTableCreation = "CREATE TABLE Team (TeamID ROWID, TeamName TEXT NOT NULL," +
-            " Wins INT NOT NULL, Losses INT NOT NULL, Seed INT, City TEXT, State TEXT, ContactEmail TEXT);";
+    private static String m_TeamTableCreation = "CREATE TABLE Team (" +
+            "TeamID ROWID, " +
+            "TeamName TEXT NOT NULL, " +
+            "Wins INT NOT NULL, " +
+            "Losses INT NOT NULL, " +44
+            "Seed INT, " +
+            "City TEXT, " +
+            "State TEXT, " +
+            "ContactEmail TEXT);";
 
 /*    private static String m_TeamTableCreation = "Create Table Team(\n" +
             "TeamID\t\tROWID,\n" +
