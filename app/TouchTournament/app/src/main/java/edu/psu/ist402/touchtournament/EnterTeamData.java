@@ -150,7 +150,7 @@ public class EnterTeamData extends ActionBarActivity {
         if(m_numberParticipantsLeft == 0){
 
             Toast.makeText(getApplicationContext(),"Thank you your final team was added",Toast.LENGTH_LONG).show();
-            
+
 
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
