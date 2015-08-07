@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -27,6 +28,10 @@ public class EnterTeamData extends ActionBarActivity {
     private int m_tournamentID;
     private int m_numberParticipants;
     private int m_numberParticipantsLeft;
+    private int m_numberParticipantsCountUp = 1;
+
+    //Textview
+    TextView EnteringCurrentTeam;
 
 
     @Override
@@ -41,6 +46,11 @@ public class EnterTeamData extends ActionBarActivity {
         m_numberParticipantsLeft = m_numberParticipants;
 
 
+        EnteringCurrentTeam = (TextView) findViewById(R.id.TVenteringCurrentTeam);
+
+        teamCount();
+        /*EnteringCurrentTeam.setText("Entering team " + m_numberParticipantsCountUp + " of "
+                + m_numberParticipants);*/
 
     }
 
@@ -146,6 +156,7 @@ public class EnterTeamData extends ActionBarActivity {
 
         //remove 1 from the participants left
         m_numberParticipantsLeft -= 1;
+        m_numberParticipantsCountUp++;
 
         //if there are no participants left to add thank them and exit to the main screen
         if(m_numberParticipantsLeft == 0){
@@ -165,6 +176,14 @@ public class EnterTeamData extends ActionBarActivity {
 
         //startover so they can add more
         ClearForm();
+        teamCount();
 
+
+
+    }
+
+    public void teamCount(){
+        EnteringCurrentTeam.setText("Entering team " + m_numberParticipantsCountUp + " of "
+                + m_numberParticipants);
     }
 }
