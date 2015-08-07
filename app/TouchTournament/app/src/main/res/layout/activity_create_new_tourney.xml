@@ -132,7 +132,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/TextViewBeginningDate"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:focusable="false" />
 
         </LinearLayout>
 
@@ -152,7 +153,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/TextViewEndingDate"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:focusable="false"/>
 
         </LinearLayout>
 
