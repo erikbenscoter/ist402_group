@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -110,10 +111,12 @@ public class CreateNewTourney extends ActionBarActivity {
 
         m_TourneyName   = ((TextView)findViewById(R.id.TextViewTournamentName)).getText().toString();
         m_Location      = ((TextView)findViewById(R.id.TextViewLocation)).getText().toString();
-        m_beginningDate = ((TextView)findViewById(R.id.TextViewBeginningDate)).getText().toString();
-        m_endingDate    = ((TextView)findViewById(R.id.TextViewEndingDate)).getText().toString();
         m_email         = ((TextView)findViewById(R.id.TextViewEmailCreateTourney)).getText().toString();
         m_password      = ((TextView)findViewById(R.id.TextViewPassword)).getText().toString();
+
+        //Dates set in the updateTextViewBeginningDate() and updateTextViewEndingDate() methods
+       // m_beginningDate = ((TextView)findViewById(R.id.TextViewBeginningDate)).getText().toString();
+       // m_endingDate    = ((TextView)findViewById(R.id.TextViewEndingDate)).getText().toString();
 
         //get the number of particpants
         String tmpNumberOfParticipants = ((Spinner)findViewById(R.id.noOfParticipants)).getSelectedItem().toString();
@@ -203,10 +206,14 @@ public class CreateNewTourney extends ActionBarActivity {
 
     private void updateTextViewBeginningDate() {
 
-        String myFormat = "MM/dd/yy"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        String displayFormat = "MM/dd/yy"; //displayed on screen
+        String SQLFormat = "yyyy/MM/dd"; //stored in DB
+        SimpleDateFormat displayDate = new SimpleDateFormat(displayFormat, Locale.US);
+        SimpleDateFormat SQLDate = new SimpleDateFormat(SQLFormat);
+        m_beginningDate = SQLDate.format(myCalendar.getTime());
+        Log.d("CreateNewTourney", "Check date format for SQLite = " + m_beginningDate);
 
-        TextViewBeginningDate.setText(sdf.format(myCalendar.getTime()));
+        TextViewBeginningDate.setText(displayDate.format(myCalendar.getTime()));
 
 
     }
@@ -215,6 +222,8 @@ public class CreateNewTourney extends ActionBarActivity {
 
         String myFormat = "MM/dd/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+
 
         TextViewEndingDate.setText(sdf.format(myCalendar.getTime()));
 
