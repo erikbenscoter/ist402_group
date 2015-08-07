@@ -56,7 +56,7 @@ public class SqlScripts {
             "TeamID ROWID, " +
             "TeamName TEXT NOT NULL, " +
             "Wins INT NOT NULL, " +
-            "Losses INT NOT NULL, " +44
+            "Losses INT NOT NULL, " +
             "Seed INT, " +
             "City TEXT, " +
             "State TEXT, " +
