@@ -27,7 +27,6 @@ public class EnterTeamData extends ActionBarActivity {
     private int m_tournamentID;
     private int m_numberParticipants;
     private int m_numberParticipantsLeft;
-    private int[] m_arrParticipants;
 
 
     @Override
@@ -41,9 +40,7 @@ public class EnterTeamData extends ActionBarActivity {
 
         m_numberParticipantsLeft = m_numberParticipants;
 
-        int numRows = m_numberParticipants;
 
-        m_arrParticipants = new int[numRows];
 
     }
 
@@ -136,11 +133,6 @@ public class EnterTeamData extends ActionBarActivity {
 
         //push the data to the database
         PushData();
-
-
-
-        //grab the data and put it into a hashmap
-        m_arrParticipants[Integer.parseInt( m_teamSeed ) - 1] = DatabaseCommunicator.GetRowID("Team");
 
 
         //remove 1 from the participants left
