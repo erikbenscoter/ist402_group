@@ -73,7 +73,7 @@ public class SqlScripts {
             "Loss\t\tINT\t\tNOT NULL\n" +
             ");";*/
 
-    //create match table
+    //create seeding table
 
     private static String m_MatchTableCreation = "CREATE TABLE Seeding (MatchID ROWID," +
             " TournamentID INT NOT NULL," +
