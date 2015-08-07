@@ -177,12 +177,28 @@ public class DatabaseCommunicator {
     }
 
     ///////////////////////////////////////////////////////////////////////////
+    //					Function To Get The ROWID Of
+    //                      What Was Just Input
+    ///////////////////////////////////////////////////////////////////////////
+    public static int GetRowID( String p_tableName ){
+
+        //create the query
+        String myQuery = "SELECT ROWID from "+p_tableName+" order by ROWID DESC limit 1";
+        Cursor myCursor = DatabaseCommunicator.CreateFetchQuery(myQuery);
+        myCursor.moveToFirst();
+
+        //return the rowid
+        return myCursor.getInt(0);
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
     //							Reset the Context
     ///////////////////////////////////////////////////////////////////////////
     public static void setM_context(Context p_context) {
         m_context = p_context;
-    }
 
+    }
 
 
 

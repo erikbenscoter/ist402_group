@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.HashMap;
+
 
 public class EnterTeamData extends ActionBarActivity {
 
@@ -25,6 +27,7 @@ public class EnterTeamData extends ActionBarActivity {
     private int m_tournamentID;
     private int m_numberParticipants;
     private int m_numberParticipantsLeft;
+    private int[] m_arrParticipants;
 
 
     @Override
@@ -37,6 +40,10 @@ public class EnterTeamData extends ActionBarActivity {
         m_numberParticipants = getIntent().getIntExtra("NumberTeams", -10);
 
         m_numberParticipantsLeft = m_numberParticipants;
+
+        int numRows = m_numberParticipants;
+
+        m_arrParticipants = new int[numRows];
 
     }
 
@@ -117,6 +124,54 @@ public class EnterTeamData extends ActionBarActivity {
     }
 
     ///////////////////////////////////////////////////////////////////////////
+    //						Function To Generate
+    //                   Matches and Push That Data
+    //                          To The Server
+    ///////////////////////////////////////////////////////////////////////////
+
+    public void GenerateAndPushMatches(){
+
+        //itterators
+        int topItt = 0;
+        int bottomItt = m_numberParticipants - 1;
+        int matchNumber = 0;
+
+        //cycle through the array
+        while ( topItt != bottomItt ){
+
+            //IDs of the 2 teams
+            int topID = m_arrParticipants[topItt];
+            int bottomID = m_arrParticipants[bottomItt];
+
+            //generate the query
+            String myQuery = "INSERT INTO Match(TournamentID,Team1ID,Team2ID,MatchNumber)" +
+                                "VALUES('"+m_tournamentID+"','"+topID+"','"+bottomID+"','"+matchNumber+"')";
+
+            //execute the query
+            DatabaseCommunicator.CreateInsertQuery(myQuery);
+
+
+            //increment the match number
+            matchNumber ++;
+
+            //move the itterators
+            topItt ++;
+            bottomItt --;
+
+        }
+
+        //create query to insert into team table
+        String myQuery = "INSERT INTO Team(TeamName, Wins, Losses, Seed, City, State, ContactEmail) "+
+                "VALUES('"+m_teamName+"','"+m_teamWins+"','"+m_teamLosses+"'," +
+                "'"+m_teamSeed+"','"+m_teamCity+"','"+m_teamState+"','"+m_teamEmail+"')";
+
+        //execute query
+        DatabaseCommunicator.CreateInsertQuery(myQuery);
+
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
     //						Function To Handle
     //                  The Click Of the Add Team Button
     ///////////////////////////////////////////////////////////////////////////
@@ -130,6 +185,10 @@ public class EnterTeamData extends ActionBarActivity {
 
 
 
+        //grab the data and put it into a hashmap
+        m_arrParticipants[Integer.parseInt( m_teamSeed ) - 1] = DatabaseCommunicator.GetRowID("Team");
+
+
         //remove 1 from the participants left
         m_numberParticipantsLeft -= 1;
 
@@ -137,12 +196,17 @@ public class EnterTeamData extends ActionBarActivity {
         if(m_numberParticipantsLeft == 0){
 
             Toast.makeText(getApplicationContext(),"Thank you your final team was added",Toast.LENGTH_LONG).show();
+
+            //generate the matches
+            GenerateAndPushMatches();
+
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
         }else{
 
             //tell them they were successful
             Toast.makeText(getApplicationContext(),"Team Added",Toast.LENGTH_LONG).show();
+
         }
 
 
