@@ -65,6 +65,7 @@ public class DatabaseCommunicator {
             m_db.execSQL(input);
         }catch (Exception e){
             Toast.makeText(m_context, e.toString(), Toast.LENGTH_LONG).show();
+            Log.d("DatabaseCommunicator", "####ERROR###" + e);
         }
 
         //return no errors
@@ -78,6 +79,7 @@ public class DatabaseCommunicator {
             m_db.execSQL(input);
         }catch (Exception e){
             Toast.makeText(m_context, error, Toast.LENGTH_LONG).show();
+            Log.d("DatabaseCommunicator", "####ERROR###" + e + error);
             result = 1;
         }
 
