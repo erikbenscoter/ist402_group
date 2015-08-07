@@ -27,7 +27,6 @@ public class EnterTeamData extends ActionBarActivity {
     private int m_tournamentID;
     private int m_numberParticipants;
     private int m_numberParticipantsLeft;
-    private int[] m_arrParticipants;
 
 
     @Override
@@ -41,9 +40,7 @@ public class EnterTeamData extends ActionBarActivity {
 
         m_numberParticipantsLeft = m_numberParticipants;
 
-        int numRows = m_numberParticipants;
 
-        m_arrParticipants = new int[numRows];
 
     }
 
@@ -113,13 +110,22 @@ public class EnterTeamData extends ActionBarActivity {
     public void PushData(){
 
         //create query to insert into team table
-        String myQuery = "INSERT INTO Team(TeamName, Wins, Losses, Seed, City, State, ContactEmail) "+
-                            "VALUES('"+m_teamName+"','"+m_teamWins+"','"+m_teamLosses+"'," +
-                            "'"+m_teamSeed+"','"+m_teamCity+"','"+m_teamState+"','"+m_teamEmail+"')";
+        String myQuery = "INSERT INTO Team(TeamName, Wins, Losses, City, State, ContactEmail) "+
+                            "VALUES('"+m_teamName+"','"+m_teamWins+"','"+m_teamLosses+"','"
+                            +m_teamCity+"','"+m_teamState+"','"+m_teamEmail+"')";
 
         //execute query
         DatabaseCommunicator.CreateInsertQuery(myQuery);
 
+        //get the row id of the last insert
+        int rowID = DatabaseCommunicator.GetRowID("Team");
+
+        //create query to insert into seeding table
+        myQuery = "INSERT INTO Seeding(TournamentID,TeamID,Seed)" +
+                    "VALUES('"+m_tournamentID+"','"+rowID+"','"+m_teamSeed+"')";
+
+        //execute the query
+        DatabaseCommunicator.CreateInsertQuery(myQuery);
 
     }
 
@@ -136,11 +142,6 @@ public class EnterTeamData extends ActionBarActivity {
 
         //push the data to the database
         PushData();
-
-
-
-        //grab the data and put it into a hashmap
-        m_arrParticipants[Integer.parseInt( m_teamSeed ) - 1] = DatabaseCommunicator.GetRowID("Team");
 
 
         //remove 1 from the participants left

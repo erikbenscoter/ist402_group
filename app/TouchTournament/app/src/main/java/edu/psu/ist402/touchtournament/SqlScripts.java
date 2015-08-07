@@ -75,8 +75,7 @@ public class SqlScripts {
 
     //create seeding table
 
-    private static String m_MatchTableCreation = "CREATE TABLE Seeding (Seeding" +
-            "ID ROWID," +
+    private static String m_MatchTableCreation = "CREATE TABLE Seeding (SeedingID ROWID," +
             " TournamentID INT NOT NULL," +
             " Team1ID INT NOT NULL, " +
             "Seed INT NOT NULL, " +
