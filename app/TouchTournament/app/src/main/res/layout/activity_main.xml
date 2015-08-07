@@ -24,21 +24,15 @@
         android:layout_height="fill_parent"
         android:id="@+id/buttons"
         android:layout_below="@+id/banner"
-        android:weightSum="14">
+        android:weightSum="5">
 
         <Button
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="Create Account"
-            android:id="@+id/ButtonCreateAccount"
+            android:id="@+id/btnCreateAccount"
             android:onClick="CreateAccount"
             android:layout_gravity="center"
-            android:layout_weight="2" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView10"
             android:layout_weight="1" />
 
         <Button
@@ -47,14 +41,8 @@
             android:text="Create New Tournament"
             android:id="@+id/btnNewTournament"
             android:layout_gravity="center"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:onClick="createNewTournament" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView"
-            android:layout_weight="1" />
 
         <Button
             android:layout_width="300dp"
@@ -62,14 +50,8 @@
             android:text="Run an Existing Tournament"
             android:id="@+id/btnExistingTournament"
             android:layout_gravity="center"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:onClick="runExisting" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView2"
-            android:layout_weight="1" />
 
         <Button
             android:layout_width="300dp"
@@ -77,15 +59,8 @@
             android:text="View a Tournamnet in Progress"
             android:id="@+id/btnViewCurrentTournament"
             android:layout_gravity="center"
-            android:layout_weight="2"
-            android:onClick="viewInProgres"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView3"
             android:layout_weight="1"
-            android:singleLine="false" />
+            android:onClick="viewInProgres"/>
 
         <Button
             android:layout_width="300dp"
@@ -93,7 +68,7 @@
             android:text="Search Completed Tournaments"
             android:id="@+id/btnViewCompletedTournament"
             android:layout_gravity="center"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:onClick="searchCompleted" />
     </LinearLayout>
 </RelativeLayout>
