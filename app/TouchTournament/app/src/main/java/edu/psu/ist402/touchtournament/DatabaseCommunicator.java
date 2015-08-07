@@ -22,7 +22,7 @@ public class DatabaseCommunicator {
     ///////////////////////////////////////////////////////////////////////////
     static SQLiteDatabase m_db = null;
     static Context m_context;
-    private boolean inTest = true;
+    private boolean inTest = false;
     final private String m_DATABASENAME = "TouchTournamentDatabase";
 
     ///////////////////////////////////////////////////////////////////////////
@@ -59,7 +59,12 @@ public class DatabaseCommunicator {
     ///////////////////////////////////////////////////////////////////////////
     public static int CreateInsertQuery(String input){
 
-        m_db.execSQL(input);
+        try{
+
+            m_db.execSQL(input);
+        }catch (Exception e){
+            Toast.makeText(m_context, e.toString(), Toast.LENGTH_LONG).show();
+        }
 
         //return no errors
         return 0;

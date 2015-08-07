@@ -144,8 +144,8 @@ public class CreateNewTourney extends ActionBarActivity {
 
         //create query to insert into Tournament Table
         String myQuery;
-        myQuery = "INSERT INTO Tournament(TournamentName,TournamentActive,TournamentLocation,TournamentType)" +
-                    "VALUES('"+m_TourneyName+"','1','"+m_Location+"','"+m_TournementType+"')";
+        myQuery = "INSERT INTO Tournament(TournamentName,TournamentLocation,TournamentType)" +
+                    "VALUES('"+m_TourneyName+"','"+m_Location+"','"+m_TournementType+"')";
 
         //execute query
         DatabaseCommunicator.CreateInsertQuery(myQuery);
@@ -154,7 +154,7 @@ public class CreateNewTourney extends ActionBarActivity {
 
         //get tournamentID
         myQuery = "Select TournamentID FROM Tournament WHERE TournamentName = '"+m_TourneyName+"'"+
-                    "AND TournamentActive = 1 AND TournamentLocation = '"+m_Location+"'";
+                    " AND TournamentLocation = '"+m_Location+"'";
         Cursor myCursor = DatabaseCommunicator.CreateFetchQuery(myQuery);
 
         //grab the returned data
@@ -168,6 +168,8 @@ public class CreateNewTourney extends ActionBarActivity {
         Toast.makeText(getApplicationContext(),"Congratulations your tournament has been created",Toast.LENGTH_LONG);
 
         Intent intent = new Intent(this, EnterTeamData.class);
+        intent.putExtra("TournamentID",tournamentID);
+        intent.putExtra("NumberTeams", m_numberOfParticipants);
         startActivity(intent);
 
     }

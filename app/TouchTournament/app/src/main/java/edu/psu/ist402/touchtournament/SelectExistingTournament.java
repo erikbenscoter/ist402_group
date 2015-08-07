@@ -1,11 +1,14 @@
 package edu.psu.ist402.touchtournament;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import java.util.Vector;
 
 
 public class SelectExistingTournament extends ActionBarActivity {
@@ -14,6 +17,7 @@ public class SelectExistingTournament extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_existing_tournament);
+        GetTournaments();
     }
 
     @Override
@@ -36,6 +40,29 @@ public class SelectExistingTournament extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    //						Function To Get
+    //                      All Running Tournaments
+    ///////////////////////////////////////////////////////////////////////////
+    public void GetTournaments(){
+
+        //prepare a query
+        String myQuery = "SELECT TournamentName FROM Tournament";
+        Cursor myCursor = DatabaseCommunicator.CreateFetchQuery(myQuery);
+
+        //cycle through the results
+        myCursor.moveToFirst();
+
+        Vector <String> tournamentNamesVector = new Vector<String>();
+        tournamentNamesVector.add(myCursor.getString(0));
+
+        while(myCursor.moveToNext()){
+            tournamentNamesVector.add(myCursor.getString(0));
+        }
+
+
     }
 
     public void select(View view) {

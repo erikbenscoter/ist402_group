@@ -60,7 +60,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/TextViewTournamentName" />
+                android:id="@+id/EditTextTeamName" />
         </LinearLayout>
 
         <!--Type of Tourney Section-->
@@ -88,7 +88,7 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/editText2"
+                    android:id="@+id/EditTextTeamWins"
                     android:layout_weight="1" />
             </LinearLayout>
 
@@ -110,7 +110,7 @@
                 <EditText
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/editText6"
+                    android:id="@+id/EditTextTeamLosses"
                     android:layout_weight="1" />
             </LinearLayout>
 
@@ -134,7 +134,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText3" />
+                android:id="@+id/EditTextTeamSeed" />
 
         </LinearLayout>
 
@@ -153,7 +153,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/TextViewLocation" />
+                android:id="@+id/EditTextTeamCity" />
         </LinearLayout>
 
         <LinearLayout
@@ -171,7 +171,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText4"
+                android:id="@+id/EditTextTeamState"
                 android:layout_weight="1" />
 
         </LinearLayout>
@@ -191,7 +191,7 @@
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/TextViewEmailCreateTourney" />
+                android:id="@+id/EditTextTeamEmail" />
         </LinearLayout>
 
         <LinearLayout
@@ -207,7 +207,7 @@
             android:layout_height="fill_parent"
             android:text="Add Team"
             android:id="@+id/button"
-            android:onClick="SubmitForm"
+            android:onClick="AddTeam"
             android:layout_gravity="center_horizontal"
             android:layout_weight="1" />
 
