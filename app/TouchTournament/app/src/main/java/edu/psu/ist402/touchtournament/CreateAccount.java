@@ -53,13 +53,22 @@ public class CreateAccount extends ActionBarActivity {
         String emailInput = editTextEmail.getText().toString();
         String passwordInput = editTextPassword.getText().toString();
 
-        //create the query
         String myInputQuery = "INSERT INTO User(UserEmail, UserPassword, UserWin, UserLoss)" +
                 "VALUES('"+emailInput +"','"+passwordInput+"', 0 ,0 )";
 
+        //create the query
+        try{
+            DatabaseCommunicator.CreateInsertQuery(myInputQuery);
+        }
+        catch(Exception e){
+            Toast.makeText(getApplicationContext(), "You must select a unique email address", Toast.LENGTH_LONG).show();
+        }
+
+
+
 
         //run the query
-        DatabaseCommunicator.CreateInsertQuery(myInputQuery);
+
 
 
         //get the email from the db
