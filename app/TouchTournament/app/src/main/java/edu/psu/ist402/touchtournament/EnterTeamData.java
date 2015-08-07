@@ -113,9 +113,9 @@ public class EnterTeamData extends ActionBarActivity {
     public void PushData(){
 
         //create query to insert into team table
-        String myQuery = "INSERT INTO Team(TeamName, Wins, Losses, Seed, City, State, ContactEmail) "+
-                            "VALUES('"+m_teamName+"','"+m_teamWins+"','"+m_teamLosses+"'," +
-                            "'"+m_teamSeed+"','"+m_teamCity+"','"+m_teamState+"','"+m_teamEmail+"')";
+        String myQuery = "INSERT INTO Team(TeamName, Wins, Losses, City, State, ContactEmail) "+
+                            "VALUES('"+m_teamName+"','"+m_teamWins+"','"+m_teamLosses+"','"
+                            +m_teamCity+"','"+m_teamState+"','"+m_teamEmail+"')";
 
         //execute query
         DatabaseCommunicator.CreateInsertQuery(myQuery);
