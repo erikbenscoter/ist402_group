@@ -117,6 +117,15 @@ public class EnterTeamData extends ActionBarActivity {
         //execute query
         DatabaseCommunicator.CreateInsertQuery(myQuery);
 
+        //get the row id of the last insert
+        int rowID = DatabaseCommunicator.GetRowID("Team");
+
+        //create query to insert into seeding table
+        myQuery = "INSERT INTO Seeding(TournamentID,TeamID,Seed)" +
+                    "VALUES('"+m_tournamentID+"','"+rowID+"','"+m_teamSeed+"')";
+
+        //execute the query
+        DatabaseCommunicator.CreateInsertQuery(myQuery);
 
     }
 
