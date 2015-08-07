@@ -72,16 +72,17 @@ public class DatabaseCommunicator {
     }
     //      Database Insert Query Catching Custom error messages
     public static int CreateInsertQuery(String input, String error){
-
+            int result = 0;
         try{
 
             m_db.execSQL(input);
         }catch (Exception e){
             Toast.makeText(m_context, error, Toast.LENGTH_LONG).show();
+            result = 1;
         }
 
         //return no errors
-        return 0;
+        return result;
     }
 
     ///////////////////////////////////////////////////////////////////////////

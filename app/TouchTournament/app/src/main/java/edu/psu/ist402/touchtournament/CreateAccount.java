@@ -57,11 +57,12 @@ public class CreateAccount extends ActionBarActivity {
         String myInputQuery = "INSERT INTO User(UserEmail, UserPassword, UserWin, UserLoss)" +
                 "VALUES('"+emailInput +"','"+passwordInput+"', 0 ,0 )";
 
+
+
         //run the query
-        DatabaseCommunicator.CreateInsertQuery(myInputQuery, "Invalid email address!  " +
-                "That email address is already used is our system.  Please select another.");
 
-
+        int result = (DatabaseCommunicator.CreateInsertQuery(myInputQuery, "Invalid email address!  " +
+                "That email address is already used is our system.  Please select another."));
 
 
         //get the email from the db
@@ -87,8 +88,30 @@ public class CreateAccount extends ActionBarActivity {
         welcomeMsg.setFocusable(false);*/
 
         //Toast welcome
-        Toast.makeText(getApplicationContext(),"Congratulations " + email + ", Your Email and Password has been accepted!",Toast.LENGTH_LONG).show();
+        if (result == 0){
+            Toast.makeText(getApplicationContext(),"Congratulations " + email + ", Your Email and Password has been accepted!",Toast.LENGTH_LONG).show();
+            thread.start();
 
+
+
+        }
 
     }
+    Thread thread = new Thread(){
+        @Override
+        public void run() {
+            try {
+
+
+                //Sleep in milli seconds
+                //Toast.LENGTH_LONG = 3.5 second display
+                //Toast.LENGTH_SHORT = 2 second display
+                //Tweeked the timing for effect.
+                Thread.sleep(1500);
+                CreateAccount.this.finish();
+            } catch (Exception e) {
+                Log.d("CreateAccount", "Error closing activity after toast message = " + e);
+            }
+        }
+    };
 }
