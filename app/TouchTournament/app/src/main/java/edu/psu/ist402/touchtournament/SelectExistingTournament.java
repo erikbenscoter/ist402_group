@@ -4,20 +4,30 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsoluteLayout;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import java.util.Vector;
 
 
 public class SelectExistingTournament extends ActionBarActivity {
+    int numberOfTourneys=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_existing_tournament);
         GetTournaments();
+
+
     }
 
     @Override
@@ -60,7 +70,35 @@ public class SelectExistingTournament extends ActionBarActivity {
 
         while(myCursor.moveToNext()){
             tournamentNamesVector.add(myCursor.getString(0));
+            numberOfTourneys++;
         }
+
+
+
+
+    }
+
+    public void createDisplay(){
+        RadioGroup buttonGroup = (RadioGroup) findViewById(R.id.buttonGroup);
+        Log.d("SelectExistingTourney", "Tournaments =" + numberOfTourneys);
+        RadioButton[] selectButton = new RadioButton[numberOfTourneys];
+        for (int i = 0; i < numberOfTourneys; i++) {
+            selectButton[i] = new RadioButton(this);
+            selectButton[i].setText("test " + (i+1));
+            selectButton[i].setId(i);
+            selectButton[i].setLayoutParams(new RadioGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
+
+            buttonGroup.addView(selectButton[i]);
+
+
+
+        }
+
+
+
+
+
 
 
     }
