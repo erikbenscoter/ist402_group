@@ -1,10 +1,12 @@
 package edu.psu.ist402.touchtournament;
 
+import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AbsoluteLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -13,66 +15,37 @@ import android.widget.TextView;
 
 public class TournamentPairings extends ActionBarActivity {
 
+    ///////////////////////////////////////////////////////////////////////////
+    //						Member Variables
+    ///////////////////////////////////////////////////////////////////////////
     int size;
+    public static String const_NumOfParticipants = "NumParticipants";
+    public static String const_TournamentID = "TournamentID";
+    private int m_numberOfParticipants;
+    private int m_numberOfByes;
+    private int m_TournamentID;
+    private String [] m_arrParticipantNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tournament_pairings);
-        /*
-        I can't figure out how to make the bracket dynamically so I will make a 4, 8, 16, and 32
-        spot bracket statically
 
+        //get the number of participants for the tournament
+        m_numberOfParticipants = getIntent().getIntExtra(const_NumOfParticipants,0);
 
-        //insert code to bring in size here
-        size = 16;
+        //get the tournamentID
+        m_TournamentID = getIntent().getIntExtra(const_TournamentID, 0);
 
-        //determine number of columns and rows
+        //calculate the number of teams that will get a bye
+        m_numberOfByes = TournamentGenerator.ByeCalculator(m_numberOfParticipants);
 
-        int tempSize = size;
-        int cols = 1;
-        int rows = 1;
-        int totalSpots = 0;
+        //make the appropriate layout visible
+        PickTournamentLayout();
 
-        while(tempSize > 1){
-            rows = rows + tempSize;
-            cols++;
-            tempSize = tempSize / 2;
-        }
+        //grab the team names and seeds
+        PopulateNameArr();
 
-        totalSpots = cols * rows;
-
-        Log.d("TournamentPairings", "Columns = " + cols + " Rows = " + rows +
-                " Total TextViews = " + totalSpots);
-
-
-
-        TableLayout t1 = (TableLayout) findViewById(R.id.tourneyTableLayout);
-        //t1.addView(row1);
-
-        TableRow[] tr = new TableRow[rows];
-        TextView[] tv = new TextView[totalSpots];
-
-        int initTVto;
-        int j = 0;
-
-        for (int i = 0; i < rows; i++){
-            tr[i] = new TableRow(this);
-            tr[i].setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-            t1.addView(tr[i]);
-
-            initTVto = (i + 1)*cols;
-
-            while (j < initTVto){
-                tv[j] = new TextView(this);
-                tv[j].setText("Test " + j + " ");
-                tr[i].addView(tv[j]);
-                j++;
-            }
-
-
-        }
-        */
     }
 
     @Override
@@ -97,4 +70,96 @@ public class TournamentPairings extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-}
+
+    ///////////////////////////////////////////////////////////////////////////
+    //						Function To Pick the
+    //                  Appropriate Layout for the Tournament
+    ///////////////////////////////////////////////////////////////////////////
+    public void PickTournamentLayout(){
+
+        //declarations
+        TableLayout sixteenTeamLayout;
+        TableLayout eightTeamLayout;
+        TableLayout fourTeamLayout;
+
+        //set them all to invisible
+        sixteenTeamLayout = (TableLayout) findViewById(R.id.sixteenTeamLayout);
+        eightTeamLayout = (TableLayout) findViewById(R.id.eightTeamLayout);
+        fourTeamLayout = (TableLayout) findViewById(R.id.fourTeamLayout);
+
+        //set the appropriate one to visible
+        switch ( m_numberOfParticipants ){
+            case 2:
+            case 3:
+            case 4:
+                fourTeamLayout.setVisibility(View.VISIBLE);
+                break;
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+                eightTeamLayout.setVisibility(View.VISIBLE);
+                break;
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+                sixteenTeamLayout.setVisibility(View.VISIBLE);
+                break;
+        }//end switch
+    }//end function
+
+    ///////////////////////////////////////////////////////////////////////////
+    //						Function To Populate
+    //                          Name and Seed Array
+    ///////////////////////////////////////////////////////////////////////////
+    public void PopulateNameArr(){
+
+        //////////get info from db//////
+
+        //make query statement
+        String myQuery = "SELECT TeamID, Seed FROM Seeding WHERE TournamentID = '"+m_TournamentID+"'";
+
+        //execute the query
+        Cursor myCursor = DatabaseCommunicator.CreateFetchQuery(myQuery);
+
+        //the number of participants is the size of the array
+        m_arrParticipantNames = new String[m_numberOfParticipants];
+
+        myCursor.moveToFirst();
+
+        //put the TeamID in the array by seed
+        m_arrParticipantNames[myCursor.getInt(1)-1] = Integer.toString(myCursor.getInt(0));
+
+        while( myCursor.moveToNext() ){
+
+            //put the TeamID in the array by seed
+            m_arrParticipantNames[myCursor.getInt(1)-1] = Integer.toString(myCursor.getInt(0));
+        }
+
+        //now the array is filled with IDs for the table
+        //let's replace those rowids with something more meaningful to the user
+        for (int arrayItterator = 0; arrayItterator < m_arrParticipantNames.length; arrayItterator ++ ){
+
+            //create a query of the db
+            myQuery = "SELECT TeamName FROM Team WHERE TeamID = '"+m_arrParticipantNames[arrayItterator]+"'";
+
+            //execute the query
+            myCursor = DatabaseCommunicator.CreateFetchQuery(myQuery);
+
+            myCursor.moveToFirst();
+
+            //set the name value in the array
+            m_arrParticipantNames[arrayItterator] = myCursor.getString(0);
+        }
+
+    }//end function
+
+}//end class
+
+
+

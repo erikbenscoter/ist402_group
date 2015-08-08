@@ -9,7 +9,7 @@ public class TournamentGenerator {
     ///////////////////////////////////////////////////////////////////////////
     //						Function To	Calculate 2^input
     ///////////////////////////////////////////////////////////////////////////
-    public int myExp(int p_input){
+    public static int myExp(int p_input){
 
         if( p_input == 0){
             return 1;
@@ -22,7 +22,7 @@ public class TournamentGenerator {
     ///////////////////////////////////////////////////////////////////////////
     //						Function To	Calculate Byes
     ///////////////////////////////////////////////////////////////////////////
-    public int ByeCalculator(int numberOfTeams){
+    public static int ByeCalculator(int numberOfTeams){
 
         // the number of byes required is the difference between the number of teams and the next-highest power of two
         // -wikepedia
