@@ -127,7 +127,7 @@ public class SelectExistingTournament extends ActionBarActivity {
 
 
     public void select(View view) {
-        Intent intent = new Intent (this, TournamentPairings.class);
+        Intent intent = new Intent (this, Authenication.class);
         intent.putExtra(TournamentPairings.const_TournamentID,tournamentID);
         Log.d("SelectExistingTourney", "PutExtra added");
         startActivity(intent);
