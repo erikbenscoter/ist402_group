@@ -20,12 +20,15 @@ import java.util.Vector;
 
 public class SelectExistingTournament extends ActionBarActivity {
     int numberOfTourneys=0;
+    Vector <String> tournamentNamesVector = new Vector<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_existing_tournament);
+        Log.d("SelectExistingTourney", "Starts");
         GetTournaments();
+        createDisplay();
 
 
     }
@@ -61,19 +64,21 @@ public class SelectExistingTournament extends ActionBarActivity {
         //prepare a query
         String myQuery = "SELECT TournamentName FROM Tournament";
         Cursor myCursor = DatabaseCommunicator.CreateFetchQuery(myQuery);
-
+        Log.d("SelectExistingTourney", "Query Complete");
         //cycle through the results
         myCursor.moveToFirst();
 
-        Vector <String> tournamentNamesVector = new Vector<String>();
+        //Vector <String> tournamentNamesVector = new Vector<String>();
         tournamentNamesVector.add(myCursor.getString(0));
+
+        Log.d("SelectExistingTourney", "create vector");
 
         while(myCursor.moveToNext()){
             tournamentNamesVector.add(myCursor.getString(0));
             numberOfTourneys++;
         }
 
-
+        Log.d("SelectExistingTourney", "while loop complete " + numberOfTourneys);
 
 
     }
@@ -82,9 +87,9 @@ public class SelectExistingTournament extends ActionBarActivity {
         RadioGroup buttonGroup = (RadioGroup) findViewById(R.id.buttonGroup);
         Log.d("SelectExistingTourney", "Tournaments =" + numberOfTourneys);
         RadioButton[] selectButton = new RadioButton[numberOfTourneys];
-        for (int i = 0; i < numberOfTourneys; i++) {
+        for (int i = 0; i <= numberOfTourneys; i++) {
             selectButton[i] = new RadioButton(this);
-            selectButton[i].setText("test " + (i+1));
+            selectButton[i].setText(tournamentNamesVector.get(i));
             selectButton[i].setId(i);
             selectButton[i].setLayoutParams(new RadioGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT));
