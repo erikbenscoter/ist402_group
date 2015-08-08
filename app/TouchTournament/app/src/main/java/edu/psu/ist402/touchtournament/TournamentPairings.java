@@ -151,7 +151,7 @@ public class TournamentPairings extends ActionBarActivity {
         for (int arrayItterator = 0; arrayItterator < m_arrParticipantNames.length; arrayItterator ++ ){
 
             //create a query of the db
-            myQuery = "SELECT TeamName FROM Team WHERE TeamID = '"+m_arrParticipantNames[arrayItterator]+"'";
+            myQuery = "SELECT TeamName FROM Team WHERE ROWuID = '"+m_arrParticipantNames[arrayItterator]+"'";
 
             //execute the query
             myCursor = DatabaseCommunicator.CreateFetchQuery(myQuery);

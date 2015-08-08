@@ -86,7 +86,7 @@ public class SelectExistingTournament extends ActionBarActivity {
     public void createDisplay(){
         RadioGroup buttonGroup = (RadioGroup) findViewById(R.id.buttonGroup);
         Log.d("SelectExistingTourney", "Tournaments =" + numberOfTourneys);
-        RadioButton[] selectButton = new RadioButton[numberOfTourneys];
+        RadioButton[] selectButton = new RadioButton[(numberOfTourneys + 1)];
         for (int i = 0; i <= numberOfTourneys; i++) {
             selectButton[i] = new RadioButton(this);
             selectButton[i].setText(tournamentNamesVector.get(i));
