@@ -158,7 +158,7 @@ public class CreateNewTourney extends ActionBarActivity {
 
 
         //get tournamentID
-        myQuery = "Select TournamentID FROM Tournament WHERE TournamentName = '"+m_TourneyName+"'"+
+        myQuery = "Select ROWID FROM Tournament WHERE TournamentName = '"+m_TourneyName+"'"+
                     " AND TournamentLocation = '"+m_Location+"'";
         Cursor myCursor = DatabaseCommunicator.CreateFetchQuery(myQuery);
 
