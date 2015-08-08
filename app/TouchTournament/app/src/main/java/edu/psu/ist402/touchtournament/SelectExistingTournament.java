@@ -19,8 +19,9 @@ import java.util.Vector;
 
 
 public class SelectExistingTournament extends ActionBarActivity {
-    int numberOfTourneys=0;
     Vector <String> tournamentNamesVector = new Vector<String>();
+    String tournamentSelected = "";
+    int tournamentID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,23 +72,26 @@ public class SelectExistingTournament extends ActionBarActivity {
         //Vector <String> tournamentNamesVector = new Vector<String>();
         tournamentNamesVector.add(myCursor.getString(0));
 
-        Log.d("SelectExistingTourney", "create vector");
+
 
         while(myCursor.moveToNext()){
             tournamentNamesVector.add(myCursor.getString(0));
-            numberOfTourneys++;
+
         }
 
-        Log.d("SelectExistingTourney", "while loop complete " + numberOfTourneys);
+
 
 
     }
 
     public void createDisplay(){
+        int numberOfTourneys = tournamentNamesVector.size();
+        Log.d("SelectExistingTourney", "numberOfTourneys set to " + numberOfTourneys);
         RadioGroup buttonGroup = (RadioGroup) findViewById(R.id.buttonGroup);
-        Log.d("SelectExistingTourney", "Tournaments =" + numberOfTourneys);
-        RadioButton[] selectButton = new RadioButton[(numberOfTourneys + 1)];
-        for (int i = 0; i <= numberOfTourneys; i++) {
+        Log.d("SelectExistingTourney", "RadioGroup object created");
+        final RadioButton[] selectButton = new RadioButton[numberOfTourneys];
+        //Log.d("SelectExistingTourney", (numberOfTourneys +1) + "RadioButton Array indexes created");
+        for (int i = 0; i < numberOfTourneys; i++) {
             selectButton[i] = new RadioButton(this);
             selectButton[i].setText(tournamentNamesVector.get(i));
             selectButton[i].setId(i);
@@ -100,6 +104,18 @@ public class SelectExistingTournament extends ActionBarActivity {
 
         }
 
+        buttonGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // checkedId is the RadioButton selected
+                //tournamentSelected = selectButton[checkedId].getText().toString();
+                Log.d("SelectExistingTourney", "Tournament Selected = " + (checkedId + 1));
+                tournamentID = checkedId +1;
+
+            }
+        });
+
 
 
 
@@ -108,8 +124,12 @@ public class SelectExistingTournament extends ActionBarActivity {
 
     }
 
+
+
     public void select(View view) {
-        Intent intent = new Intent (this, Authenication.class);
+        Intent intent = new Intent (this, TournamentPairings.class);
+        intent.putExtra(TournamentPairings.const_TournamentID,tournamentID);
+        Log.d("SelectExistingTourney", "PutExtra added");
         startActivity(intent);
     }
 }

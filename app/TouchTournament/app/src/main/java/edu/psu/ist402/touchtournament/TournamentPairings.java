@@ -25,17 +25,21 @@ public class TournamentPairings extends ActionBarActivity {
     private int m_numberOfByes;
     private int m_TournamentID;
     private String [] m_arrParticipantNames;
+    Cursor myCursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tournament_pairings);
 
-        //get the number of participants for the tournament
-        m_numberOfParticipants = getIntent().getIntExtra(const_NumOfParticipants,-10);
-
         //get the tournamentID
         m_TournamentID = getIntent().getIntExtra(const_TournamentID, -10);
+        Log.d("TournamentPairings", "m_TournamentID = " + m_TournamentID);
+
+        //get the number of participants for the tournament
+        //m_numberOfParticipants = getIntent().getIntExtra(const_NumOfParticipants,-10);
+        m_numberOfParticipants = grabNumberofParticipants();
+        Log.d("TournamentPairings", "Number of Participants = " +  m_numberOfParticipants);
 
         //calculate the number of teams that will get a bye
         m_numberOfByes = TournamentGenerator.ByeCalculator(m_numberOfParticipants);
@@ -46,6 +50,20 @@ public class TournamentPairings extends ActionBarActivity {
         //grab the team names and seeds
         PopulateNameArr();
 
+    }
+
+    private int grabNumberofParticipants() {
+
+        String participantQuery = "SELECT COUNT(TournamentID) FROM Seeding WHERE " +
+                "TournamentID = '" + m_TournamentID + "'";
+        Log.d("TournamentPairings", "created query string = " + participantQuery);
+        myCursor = DatabaseCommunicator.CreateFetchQuery(participantQuery);
+        Log.d("TournamentPairings", "Query Sucessful");
+        myCursor.moveToFirst();
+        Log.d("TournamentPairings", "move to first");
+        int numberOfParticipants = myCursor.getInt(0);
+        Log.d("TournamentPairings", "getInt()");
+        return numberOfParticipants;
     }
 
     @Override
@@ -130,7 +148,7 @@ public class TournamentPairings extends ActionBarActivity {
         String myQuery = "SELECT TeamID, Seed FROM Seeding WHERE TournamentID = '"+m_TournamentID+"'";
 
         //execute the query
-        Cursor myCursor = DatabaseCommunicator.CreateFetchQuery(myQuery);
+        myCursor = DatabaseCommunicator.CreateFetchQuery(myQuery);
 
         //the number of participants is the size of the array
         m_arrParticipantNames = new String[m_numberOfParticipants];

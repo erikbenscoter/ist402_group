@@ -168,7 +168,7 @@ public class EnterTeamData extends ActionBarActivity {
             Intent intent = new Intent(this,TournamentPairings.class);
 
             //push extras
-            intent.putExtra(TournamentPairings.const_NumOfParticipants,m_numberParticipants);
+            //intent.putExtra(TournamentPairings.const_NumOfParticipants,m_numberParticipants);
             intent.putExtra(TournamentPairings.const_TournamentID,m_tournamentID);
 
             startActivity(intent);
