@@ -95,7 +95,13 @@ public class DatabaseCommunicator {
     ///////////////////////////////////////////////////////////////////////////
     public static Cursor CreateFetchQuery(String input){
 
-        Cursor cursor = m_db.rawQuery(input,null);
+        Cursor cursor;
+        try {
+             cursor = m_db.rawQuery(input, null);
+        }catch (Exception e){
+            Toast.makeText(m_context,"error " + e, Toast.LENGTH_LONG).show();
+            cursor = m_db.rawQuery(input,null);
+        }
         return cursor;
     }
 
