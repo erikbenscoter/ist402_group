@@ -32,10 +32,10 @@ public class TournamentPairings extends ActionBarActivity {
         setContentView(R.layout.activity_tournament_pairings);
 
         //get the number of participants for the tournament
-        m_numberOfParticipants = getIntent().getIntExtra(const_NumOfParticipants,0);
+        m_numberOfParticipants = getIntent().getIntExtra(const_NumOfParticipants,-10);
 
         //get the tournamentID
-        m_TournamentID = getIntent().getIntExtra(const_TournamentID, 0);
+        m_TournamentID = getIntent().getIntExtra(const_TournamentID, -10);
 
         //calculate the number of teams that will get a bye
         m_numberOfByes = TournamentGenerator.ByeCalculator(m_numberOfParticipants);
@@ -82,10 +82,15 @@ public class TournamentPairings extends ActionBarActivity {
         TableLayout eightTeamLayout;
         TableLayout fourTeamLayout;
 
-        //set them all to invisible
+        //grab all the layouts
         sixteenTeamLayout = (TableLayout) findViewById(R.id.sixteenTeamLayout);
         eightTeamLayout = (TableLayout) findViewById(R.id.eightTeamLayout);
         fourTeamLayout = (TableLayout) findViewById(R.id.fourTeamLayout);
+
+        //set all of them invisible
+        sixteenTeamLayout.setVisibility(View.GONE);
+        eightTeamLayout.setVisibility(View.GONE);
+        fourTeamLayout.setVisibility(View.GONE);
 
         //set the appropriate one to visible
         switch ( m_numberOfParticipants ){

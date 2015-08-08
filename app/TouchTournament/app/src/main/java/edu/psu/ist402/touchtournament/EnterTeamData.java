@@ -30,6 +30,7 @@ public class EnterTeamData extends ActionBarActivity {
     private int m_numberParticipantsLeft;
     private int m_numberParticipantsCountUp = 1;
 
+
     //Textview
     TextView EnteringCurrentTeam;
 
@@ -40,8 +41,8 @@ public class EnterTeamData extends ActionBarActivity {
         setContentView(R.layout.activity_enter_team_data);
 
         //get the tournament id
-        m_tournamentID = getIntent().getIntExtra("tournamentID",-10);
-        m_numberParticipants = getIntent().getIntExtra("NumberTeams", -10);
+        m_tournamentID = getIntent().getIntExtra(TournamentPairings.const_TournamentID,-10);
+        m_numberParticipants = getIntent().getIntExtra(TournamentPairings.const_NumOfParticipants, -10);
 
         m_numberParticipantsLeft = m_numberParticipants;
 
@@ -164,7 +165,12 @@ public class EnterTeamData extends ActionBarActivity {
             Toast.makeText(getApplicationContext(),"Thank you your final team was added",Toast.LENGTH_LONG).show();
 
 
-            Intent intent = new Intent(this,MainActivity.class);
+            Intent intent = new Intent(this,TournamentPairings.class);
+
+            //push extras
+            intent.putExtra(TournamentPairings.const_NumOfParticipants,m_numberParticipants);
+            intent.putExtra(TournamentPairings.const_TournamentID,m_tournamentID);
+
             startActivity(intent);
         }else{
 

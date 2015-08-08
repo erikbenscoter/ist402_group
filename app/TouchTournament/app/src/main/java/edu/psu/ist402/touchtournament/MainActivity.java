@@ -71,4 +71,8 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    public void REMOVEDB(View view) {
+        DatabaseCommunicator dc = new DatabaseCommunicator(getApplicationContext());
+        dc.RemoveDB();
+    }
 }
