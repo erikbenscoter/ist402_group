@@ -84,7 +84,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot17"
-                            android:id="@+id/quarter1_16man" />
+                            android:id="@+id/_17_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -108,8 +108,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot16"
-                            android:id="@+id/_16_16man" />
+                            android:text="Spot2"
+                            android:id="@+id/_2_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -146,7 +146,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot25"
-                            android:id="@+id/semi1_16man" />
+                            android:id="@+id/_25_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -166,8 +166,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot8"
-                            android:id="@+id/_8_16man" />
+                            android:text="Spot3"
+                            android:id="@+id/_3_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -200,7 +200,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot24"
-                            android:id="@+id/quarter8_16man" />
+                            android:id="@+id/_24_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -224,8 +224,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot9"
-                            android:id="@+id/_9_16man" />
+                            android:text="Spot4"
+                            android:id="@+id/_4_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -266,7 +266,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot29"
-                            android:id="@+id/final1_16man" />
+                            android:id="@+id/_29_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -316,7 +316,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot21"
-                            android:id="@+id/quater5_16man" />
+                            android:id="@+id/_21_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -340,8 +340,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot12"
-                            android:id="@+id/_12_16man" />
+                            android:text="Spot6"
+                            android:id="@+id/_6_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -378,7 +378,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot28"
-                            android:id="@+id/semi4_16man" />
+                            android:id="@+id/_28_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -398,8 +398,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot13"
-                            android:id="@+id/_13_16man" />
+                            android:text="Spot7"
+                            android:id="@+id/_7_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -432,7 +432,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot20"
-                            android:id="@+id/quarter4_16man" />
+                            android:id="@+id/_20_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -456,8 +456,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot4"
-                            android:id="@+id/_4_16man" />
+                            android:text="Spot8"
+                            android:id="@+id/_8_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -501,7 +501,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot31"
-                            android:id="@+id/champ_16man" />
+                            android:id="@+id/_31_16man" />
 
                     </TableRow>
 
@@ -513,8 +513,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot3"
-                            android:id="@+id/_3_16man" />
+                            android:text="Spot9"
+                            android:id="@+id/_9_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -547,7 +547,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot19"
-                            android:id="@+id/quarter3_16man" />
+                            android:id="@+id/_19_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -571,8 +571,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot14"
-                            android:id="@+id/_14_16man" />
+                            android:text="Spot10"
+                            android:id="@+id/_10_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -609,7 +609,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot27"
-                            android:id="@+id/semi3_16man" />
+                            android:id="@+id/_27_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -629,8 +629,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot6"
-                            android:id="@+id/_6_16man" />
+                            android:text="Spot11"
+                            android:id="@+id/_11_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -663,7 +663,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot22"
-                            android:id="@+id/quarter6_16man" />
+                            android:id="@+id/_22_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -687,8 +687,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot11"
-                            android:id="@+id/_11_16man" />
+                            android:text="Spot12"
+                            android:id="@+id/_12_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -729,7 +729,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot30"
-                            android:id="@+id/final2_16man" />
+                            android:id="@+id/_30_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -745,8 +745,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot7"
-                            android:id="@+id/_7_16man" />
+                            android:text="Spot13"
+                            android:id="@+id/_13_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -779,7 +779,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot23"
-                            android:id="@+id/quarter7_16man" />
+                            android:id="@+id/_23_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -803,8 +803,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot10"
-                            android:id="@+id/_10_16man" />
+                            android:text="Spot14"
+                            android:id="@+id/_14_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -841,7 +841,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot26"
-                            android:id="@+id/semi2_16man" />
+                            android:id="@+id/_26_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -895,7 +895,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot18"
-                            android:id="@+id/quarter2_16man" />
+                            android:id="@+id/_18_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -919,8 +919,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot2"
-                            android:id="@+id/_2_16man" />
+                            android:text="Spot16"
+                            android:id="@+id/_16_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -988,7 +988,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot9"
-                            android:id="@+id/semi1_8man" />
+                            android:id="@+id/_9_8man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1003,8 +1003,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot8"
-                            android:id="@+id/_8_8man" />
+                            android:text="Spot2"
+                            android:id="@+id/_2_8man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1037,7 +1037,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot13"
-                            android:id="@+id/final1_8man" />
+                            android:id="@+id/_13_8man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1053,8 +1053,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="spot5"
-                            android:id="@+id/_5_8man" />
+                            android:text="spot3"
+                            android:id="@+id/_3_8man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1082,7 +1082,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot12"
-                            android:id="@+id/semi4_8man" />
+                            android:id="@+id/_12_8man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1137,7 +1137,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot15"
-                            android:id="@+id/champ_8man" />
+                            android:id="@+id/_15_8man" />
                     </TableRow>
 
                     <!--Quarter Final 3rd Seed-->
@@ -1148,8 +1148,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot3"
-                            android:id="@+id/_3_8man" />
+                            android:text="Spot5"
+                            android:id="@+id/_5_8man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1178,7 +1178,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot11"
-                            android:id="@+id/semi3_8man" />
+                            android:id="@+id/_11_8man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1232,7 +1232,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot14"
-                            android:id="@+id/final2_8man" />
+                            android:id="@+id/_14_8man" />
 
                         <TextView
                         android:layout_width="wrap_content"
@@ -1278,7 +1278,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot10"
-                            android:id="@+id/semi2_8man" />
+                            android:id="@+id/_10_8man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1298,8 +1298,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot2"
-                            android:id="@+id/_2_8man" />
+                            android:text="Spot8"
+                            android:id="@+id/_8_8man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1359,7 +1359,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot5"
-                            android:id="@+id/final1_4man" />
+                            android:id="@+id/_5_4man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1374,8 +1374,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot4"
-                            android:id="@+id/_4_4man" />
+                            android:text="Spot2"
+                            android:id="@+id/_2_4man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1404,7 +1404,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot7"
-                            android:id="@+id/champ_4man" />
+                            android:id="@+id/_7_4man" />
 
                     </TableRow>
 
@@ -1442,7 +1442,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Spot6"
-                            android:id="@+id/final2_4man" />
+                            android:id="@+id/_6_4man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1458,8 +1458,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot2"
-                            android:id="@+id/_2_4man" />
+                            android:text="Spot4"
+                            android:id="@+id/_4_4man" />
 
                         <TextView
                             android:layout_width="wrap_content"

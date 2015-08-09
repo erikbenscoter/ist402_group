@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsoluteLayout;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -25,6 +26,8 @@ public class TournamentPairings extends ActionBarActivity {
     private int m_numberOfByes;
     private int m_TournamentID;
     private String [] m_arrParticipantNames;
+    private Button[] m_arrBracketButtons;
+    private int m_sizeLayout;
     Cursor myCursor;
 
     @Override
@@ -44,11 +47,21 @@ public class TournamentPairings extends ActionBarActivity {
         //calculate the number of teams that will get a bye
         m_numberOfByes = TournamentGenerator.ByeCalculator(m_numberOfParticipants);
 
+
         //make the appropriate layout visible
         PickTournamentLayout();
 
         //grab the team names and seeds
         PopulateNameArr();
+
+        //organize the buttons in an enterable way
+        OrganizeButtonArr();
+
+        //set default text of buttons
+        SetButtonsText("Not Yet Determined");
+
+        //populate first round button texts
+        PopulateFirstRoundButtons();
 
     }
 
@@ -116,12 +129,14 @@ public class TournamentPairings extends ActionBarActivity {
             case 3:
             case 4:
                 fourTeamLayout.setVisibility(View.VISIBLE);
+                m_sizeLayout = 4;
                 break;
             case 5:
             case 6:
             case 7:
             case 8:
                 eightTeamLayout.setVisibility(View.VISIBLE);
+                m_sizeLayout = 8;
                 break;
             case 9:
             case 10:
@@ -132,6 +147,7 @@ public class TournamentPairings extends ActionBarActivity {
             case 15:
             case 16:
                 sixteenTeamLayout.setVisibility(View.VISIBLE);
+                m_sizeLayout = 16;
                 break;
         }//end switch
     }//end function
@@ -181,6 +197,79 @@ public class TournamentPairings extends ActionBarActivity {
         }
 
     }//end function
+
+    ///////////////////////////////////////////////////////////////////////////
+    //						Function To Populate
+    //                          Button Array
+    ///////////////////////////////////////////////////////////////////////////
+    public void OrganizeButtonArr() {
+
+        //the number of spots in the tournament are as follows
+        //which is 2*numParticipants -1:
+        /*
+                4->7;
+                8->15;
+                16->31;
+
+            Similarly we will leverage the name of the buttons in order to grab
+            them in a loop.  It will be made up of two parts parts: _number_numberparticipman
+
+            For example: spot 13 of a 16 participant tournament would be as follows
+            _13_16man
+         */
+
+        //create the prestring:
+        String preSpotString = "_";
+        String currSpotString = "0";
+        String postSpotString = "_"+Integer.toString(m_sizeLayout)+"man";
+
+        //last button number will be 2*layoutsize -1
+        int lastButtonNumber = ((2*m_sizeLayout)-1);
+
+        //initialize the array to hold all the buttons
+        m_arrBracketButtons = new Button[lastButtonNumber];
+
+        //cycle through the buttons
+        for( int currentButton = 1; currentButton <= lastButtonNumber; currentButton ++){
+
+            String resourceName = preSpotString + Integer.toString(currentButton) + postSpotString;
+            int resID = getResources().getIdentifier(resourceName,"id",getPackageName());
+
+            //put the current button in that spot -1 of the array
+            m_arrBracketButtons[currentButton-1] = (Button) findViewById(resID);
+        }
+
+
+    }//end function
+
+    ///////////////////////////////////////////////////////////////////////////
+    //					Function To Set All Buttons' Text
+    ///////////////////////////////////////////////////////////////////////////
+    public void SetButtonsText(String p_defaultText){
+
+        for(int currButtonItt = 0; currButtonItt < m_arrBracketButtons.length; currButtonItt ++){
+            m_arrBracketButtons[currButtonItt].setText(p_defaultText);
+        }
+    }// end funciton
+
+    ///////////////////////////////////////////////////////////////////////////
+    //					Function To Populate Button Names
+    ///////////////////////////////////////////////////////////////////////////
+    public void PopulateFirstRoundButtons(){
+
+        int currButtonItt = 0;
+        for( int currNameItt = m_numberOfByes; currNameItt < m_arrParticipantNames.length; currNameItt ++ ){
+            m_arrBracketButtons[currButtonItt].setText(m_arrParticipantNames[currNameItt]);
+            currButtonItt ++;
+        }
+
+        //hide those missing from byes
+        for( ; currButtonItt <= m_numberOfParticipants; currButtonItt ++ ){
+            m_arrBracketButtons[currButtonItt].setVisibility(View.GONE);
+        }
+
+    }//end function
+
 
 }//end class
 
