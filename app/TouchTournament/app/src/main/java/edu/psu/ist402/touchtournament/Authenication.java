@@ -52,19 +52,28 @@ public class Authenication extends ActionBarActivity {
         String username = ETusername.getText().toString();
         String password = ETpassword.getText().toString();
 
-        String myQuery = "SELECT COUNT(UserEmail) FROM User WHERE UserEmail = '" + username +
-                "' and UserPassword = '" + password + "'";
+        String myQuery = null;
 
-        Cursor myCursor = myCursor = DatabaseCommunicator.CreateFetchQuery(myQuery);
+       if(DatabaseCommunicator.IsLegitimate(username,password)){
 
-        myCursor.moveToFirst();
+            myQuery = "SELECT COUNT(AdminEmail) FROM Admin WHERE AdminEmail = '" + username +
+                    "' AND TournamentID = '" + m_TournamentID + "';";
 
-        int result = myCursor.getInt(0);
+           Cursor myCursor = DatabaseCommunicator.CreateFetchQuery(myQuery);
 
-        if (result == 1){
-            Intent intent = new Intent (this, TournamentPairings.class);
-            intent.putExtra(TournamentPairings.const_TournamentID,m_TournamentID);
-            startActivity(intent);
+           //grab the returned data
+           myCursor.moveToFirst();
+           int Admin = myCursor.getInt(0);
+           if (Admin == 1){
+               Intent intent = new Intent (this, TournamentPairings.class);
+               intent.putExtra(TournamentPairings.const_TournamentID,m_TournamentID);
+               startActivity(intent);
+           }
+           else{
+               Toast.makeText(this, username + " is not an administrator for the  selected tournament.", Toast.LENGTH_LONG).show();
+           }
+
+
         }
 
         else{
