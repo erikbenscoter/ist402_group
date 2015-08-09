@@ -1,0 +1,8 @@
+can now generate tournaments with byes
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#	modified:   app/TouchTournament/app/src/main/java/edu/psu/ist402/touchtournament/TournamentPairings.java
+#	modified:   app/TouchTournament/app/src/main/res/layout/activity_tournament_pairings.xml
+#
