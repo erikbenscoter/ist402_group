@@ -180,20 +180,23 @@ public class DatabaseCommunicator {
 
         //create query
 
-        Cursor myCursor = CreateFetchQuery("SELECT * FROM User" +
-                " WHERE UserEmail='"+p_email+"'");
+        String myQuery = "SELECT COUNT(ROWID) FROM User WHERE UserEmail = '" + p_email +
+        "' AND UserPassword = '" + p_password + "';";
 
-        int matches = myCursor.getCount();
+        Cursor myCursor = CreateFetchQuery(myQuery);
+
+        //grab the returned data
+        myCursor.moveToFirst();
+        int matches = myCursor.getInt(0);
+
 
         //declare and initiate the return value
         boolean returnValue = false;
 
         //if there is atleast one person with that username and password
         //then return true, otherwise return false
-        if( matches > 0 ){
+        if( matches == 1 ) {
             returnValue = true;
-        }else{
-            returnValue = false;
         }
 
         return returnValue;
