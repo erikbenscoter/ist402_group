@@ -90,6 +90,8 @@ public class SqlScripts {
             "TournamentID INT, " +
             "TeamID INT, " +
             "SeedingID INT, " +
+            "WinnerScore INT, " +
+            "LoserScore INT," +
             "FOREIGN KEY (TournamentID) REFERENCES Tournament (ROWID), " +
             "FOREIGN KEY (TeamID) REFERENCES Team (ROWID), " +
             "FOREIGN KEY (SeedingID) REFERENCES Seeding (ROWID));";
