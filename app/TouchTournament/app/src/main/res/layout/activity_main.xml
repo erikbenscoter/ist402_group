@@ -76,7 +76,6 @@
             android:text="Search Completed Tournaments"
             android:id="@+id/btnViewCompletedTournament"
             android:layout_gravity="center"
-            android:layout_weight="1"
-            android:onClick="searchCompleted" />
+            android:layout_weight="1" />
     </LinearLayout>
 </RelativeLayout>

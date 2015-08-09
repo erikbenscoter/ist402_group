@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/sixteenTeamLayout"
                     android:background="#ffffffff"
-                    android:visibility="visible">
+                    android:visibility="gone">
 
                     <!--Consi 1st seed-->
                     <TableRow
@@ -948,7 +948,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/eightTeamLayout"
                     android:background="#ffffffff"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <!--Quarter Final 1st Seed-->
                     <TableRow
