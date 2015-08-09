@@ -262,14 +262,23 @@ public class TournamentPairings extends ActionBarActivity {
     public void PopulateFirstRoundButtons(){
         int moreByes = m_numberOfByes;
         boolean singleAlternator = false;
+        boolean pullFromBack = false;
+        int backNameItterator = m_numberOfParticipants -1;
         int alternator = 1;
         int currNameItt = m_numberOfByes;
         for( int currButtonItt = 0; currButtonItt < m_sizeLayout; currButtonItt ++ ){
 
-            if( moreByes == 0 || (currNameItt < m_arrParticipantNames.length && alternator <= 2)  ){
+            if( moreByes == 0 || (currNameItt <= backNameItterator && alternator <= 2)  ){
 
-                m_arrBracketButtons[currButtonItt].setText(m_arrParticipantNames[currNameItt]);
-                currNameItt ++;
+                if( pullFromBack ){
+                    m_arrBracketButtons[currButtonItt].setText(m_arrParticipantNames[backNameItterator]);
+                    backNameItterator --;
+                }else{
+                    m_arrBracketButtons[currButtonItt].setText(m_arrParticipantNames[currNameItt]);
+                    currNameItt ++;
+                }
+
+                pullFromBack = !pullFromBack;
             }
             else{
 
@@ -295,6 +304,8 @@ public class TournamentPairings extends ActionBarActivity {
     public void PopulateByes(){
         int moreNonByes = (m_numberOfParticipants - m_numberOfByes)/2;
         boolean singleAlternator = false;
+        boolean pullFromBack = false;
+        int backNameItterator = m_numberOfByes-1;
         int alternator = 1;
         int currNameItt = 0;
 
@@ -302,8 +313,17 @@ public class TournamentPairings extends ActionBarActivity {
 
             if( (alternator > 1 || moreNonByes == 0) && currNameItt < m_numberOfByes ){
 
-                m_arrBracketButtons[currButtonItt].setText(m_arrParticipantNames[currNameItt]);
-                currNameItt ++;
+                if(pullFromBack){
+                    m_arrBracketButtons[currButtonItt].setText(m_arrParticipantNames[backNameItterator]);
+                    backNameItterator --;
+
+                }else{
+                    m_arrBracketButtons[currButtonItt].setText(m_arrParticipantNames[currNameItt]);
+                    currNameItt ++;
+
+                }
+
+                pullFromBack = !pullFromBack;
             }
             else{
 
