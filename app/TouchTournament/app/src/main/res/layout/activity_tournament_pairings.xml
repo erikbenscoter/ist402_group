@@ -199,8 +199,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot24"
-                            android:id="@+id/_24_16man" />
+                            android:text="Spot18"
+                            android:id="@+id/_18_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -315,8 +315,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot21"
-                            android:id="@+id/_21_16man" />
+                            android:text="Spot19"
+                            android:id="@+id/_19_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -546,8 +546,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot19"
-                            android:id="@+id/_19_16man" />
+                            android:text="Spot21"
+                            android:id="@+id/_21_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -894,8 +894,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot18"
-                            android:id="@+id/_18_16man" />
+                            android:text="Spot24"
+                            android:id="@+id/_24_16man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1081,8 +1081,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot12"
-                            android:id="@+id/_12_8man" />
+                            android:text="Spot10"
+                            android:id="@+id/_10_8man" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1277,8 +1277,8 @@
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Spot10"
-                            android:id="@+id/_10_8man" />
+                            android:text="Spot12"
+                            android:id="@+id/_12_8man" />
 
                         <TextView
                             android:layout_width="wrap_content"

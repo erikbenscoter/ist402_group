@@ -48,6 +48,7 @@ public class TournamentPairings extends ActionBarActivity {
         m_numberOfByes = TournamentGenerator.ByeCalculator(m_numberOfParticipants);
 
 
+
         //make the appropriate layout visible
         PickTournamentLayout();
 
@@ -62,6 +63,9 @@ public class TournamentPairings extends ActionBarActivity {
 
         //populate first round button texts
         PopulateFirstRoundButtons();
+
+        //populate the byes
+        PopulateByes();
 
     }
 
@@ -256,19 +260,66 @@ public class TournamentPairings extends ActionBarActivity {
     //					Function To Populate Button Names
     ///////////////////////////////////////////////////////////////////////////
     public void PopulateFirstRoundButtons(){
+        int moreByes = m_numberOfByes;
+        boolean singleAlternator = false;
+        int alternator = 1;
+        int currNameItt = m_numberOfByes;
+        for( int currButtonItt = 0; currButtonItt < m_sizeLayout; currButtonItt ++ ){
 
-        int currButtonItt = 0;
-        for( int currNameItt = m_numberOfByes; currNameItt < m_arrParticipantNames.length; currNameItt ++ ){
-            m_arrBracketButtons[currButtonItt].setText(m_arrParticipantNames[currNameItt]);
-            currButtonItt ++;
-        }
+            if( moreByes == 0 || (currNameItt < m_arrParticipantNames.length && alternator <= 2)  ){
 
-        //hide those missing from byes
-        for( ; currButtonItt <= m_numberOfParticipants; currButtonItt ++ ){
-            m_arrBracketButtons[currButtonItt].setVisibility(View.GONE);
+                m_arrBracketButtons[currButtonItt].setText(m_arrParticipantNames[currNameItt]);
+                currNameItt ++;
+            }
+            else{
+
+                m_arrBracketButtons[currButtonItt].setVisibility(View.GONE);
+                if( singleAlternator ){
+                    moreByes --;
+                }
+                singleAlternator = !singleAlternator;
+            }
+
+            alternator ++;
+            if(alternator == 5){
+                alternator = 1;
+            }
+
         }
 
     }//end function
+
+    ///////////////////////////////////////////////////////////////////////////
+    //					Function To Populate Bye Button Names
+    ///////////////////////////////////////////////////////////////////////////
+    public void PopulateByes(){
+        int moreNonByes = (m_numberOfParticipants - m_numberOfByes)/2;
+        boolean singleAlternator = false;
+        int alternator = 1;
+        int currNameItt = 0;
+
+        for( int currButtonItt = m_sizeLayout; currButtonItt < m_sizeLayout+m_sizeLayout/2; currButtonItt ++ ){
+
+            if( (alternator > 1 || moreNonByes == 0) && currNameItt < m_numberOfByes ){
+
+                m_arrBracketButtons[currButtonItt].setText(m_arrParticipantNames[currNameItt]);
+                currNameItt ++;
+            }
+            else{
+
+                moreNonByes --;
+
+                singleAlternator = !singleAlternator;
+
+            }
+
+            alternator ++;
+            if(alternator == 3){
+                alternator = 1;
+            }
+
+        }
+    }
 
 
 }//end class
