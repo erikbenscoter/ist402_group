@@ -68,16 +68,13 @@ public class SqlScripts {
             "FOREIGN KEY (UserID) REFERENCES User (ROWID));";
 
     //create client table
+    //If we use this table it needs some help
 
-
-    /*
-    This table needs work making the ROWID that is implicitly created also a foreign key
-    however it is not currently used.
 
     private static String m_ClientTableCreation = "CREATE TABLE Client (" +
             "TournamentID INT NOT NULL, " +
-            "FOREIGN KEY (ClientID) REFERENCES User (UserID), " +
-            "FOREIGN KEY (TournamentID) REFERENCES Tournament (TournamentID));";*/
+            "FOREIGN KEY (ClientID) REFERENCES User (UserID), " +//this line doesn't work....ClientID doesn't exist.
+            "FOREIGN KEY (TournamentID) REFERENCES Tournament (TournamentID));";
 
 
 
@@ -88,6 +85,14 @@ public class SqlScripts {
             "TournamentID INT NOT NULL, " +
             "FOREIGN KEY (AdminEmail) REFERENCES User (UserEmail), " +
             "FOREIGN KEY (TournamentID) REFERENCES Tournament (TournamentID));";
+
+    private static String m_CreateWinnersTable = "CREATE TABLE Winners (" +
+            "TournamentID INT, " +
+            "TeamID INT, " +
+            "SeedingID INT, " +
+            "FOREIGN KEY (TournamentID) REFERENCES Tournament (ROWID), " +
+            "FOREIGN KEY (TeamID) REFERENCES Team (ROWID), " +
+            "FOREIGN KEY (SeedingID) REFERENCES Seeding (ROWID));";
 
 
     ///////////////////////////////////////////////////////////////////////////
@@ -114,11 +119,15 @@ public class SqlScripts {
         return m_FollowTeamTableCreation;
     }
 
-    /*public static String getM_ClientTableCreation() {
+    public static String getM_ClientTableCreation() {
         return m_ClientTableCreation;
-    }*/
+    }
 
     public static String getM_CreateAdminTable() {
         return m_CreateAdminTable;
     }
+    public static String getM_CreateWinnersTable(){
+        return m_CreateWinnersTable;
+    }
+
 }

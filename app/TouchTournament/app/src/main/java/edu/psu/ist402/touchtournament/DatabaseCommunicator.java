@@ -147,10 +147,11 @@ public class DatabaseCommunicator {
             m_db.execSQL(SqlScripts.getM_UserCreation());
             m_db.execSQL(SqlScripts.getM_TeamTableCreation());
             m_db.execSQL(SqlScripts.getM_TournamentTableCreation());
-           // m_db.execSQL(SqlScripts.getM_ClientTableCreation());
+            //m_db.execSQL(SqlScripts.getM_ClientTableCreation());
             m_db.execSQL(SqlScripts.getM_CreateAdminTable());
             m_db.execSQL(SqlScripts.getM_FollowTeamTableCreation());
             m_db.execSQL(SqlScripts.getM_MatchTableCreation());
+            m_db.execSQL(SqlScripts.getM_CreateWinnersTable());
         }catch (Exception e){
             Log.d("DatabaseCommunicator", "####ERROR### couldn't create tables", e);
             return  -1;
