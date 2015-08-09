@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageView2"
-            android:src="@drawable/create_tourney_placeholder" />
+            android:src="@drawable/ball_collage_small" />
     </LinearLayout>
 
     <!--Contains all the fields for a new tourney-->
