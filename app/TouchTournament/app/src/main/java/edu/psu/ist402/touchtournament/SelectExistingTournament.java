@@ -61,6 +61,8 @@ public class SelectExistingTournament extends ActionBarActivity {
     //                      All Running Tournaments
     ///////////////////////////////////////////////////////////////////////////
     public void GetTournaments(){
+        //add error checking here for tournament count.
+
 
         //prepare a query
         String myQuery = "SELECT TournamentName FROM Tournament";
