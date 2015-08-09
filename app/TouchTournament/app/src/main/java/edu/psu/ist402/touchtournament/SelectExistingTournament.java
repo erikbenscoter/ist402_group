@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Vector;
 
@@ -56,35 +57,6 @@ public class SelectExistingTournament extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    //						Function To Get
-    //                      All Running Tournaments
-    ///////////////////////////////////////////////////////////////////////////
-    public void GetTournaments(){
-        //add error checking here for tournament count.
-
-
-        //prepare a query
-        String myQuery = "SELECT TournamentName FROM Tournament";
-        Cursor myCursor = DatabaseCommunicator.CreateFetchQuery(myQuery);
-        Log.d("SelectExistingTourney", "Query Complete");
-        //cycle through the results
-        myCursor.moveToFirst();
-
-        //Vector <String> tournamentNamesVector = new Vector<String>();
-        tournamentNamesVector.add(myCursor.getString(0));
-
-
-
-        while(myCursor.moveToNext()){
-            tournamentNamesVector.add(myCursor.getString(0));
-
-        }
-
-
-
-
-    }
 
     public void createDisplay(){
         int numberOfTourneys = tournamentNamesVector.size();
@@ -117,21 +89,81 @@ public class SelectExistingTournament extends ActionBarActivity {
 
             }
         });
-
-
-
-
-
-
-
     }
 
 
 
     public void select(View view) {
         Intent intent = new Intent (this, Authenication.class);
-        intent.putExtra(TournamentPairings.const_TournamentID,tournamentID);
+        intent.putExtra(TournamentPairings.const_TournamentID, tournamentID);
         Log.d("SelectExistingTourney", "PutExtra added");
         startActivity(intent);
     }
+
+    ///////////////////////////////////////////////////////////////////////////
+    //						Function To Get
+    //                      All Running Tournaments
+    ///////////////////////////////////////////////////////////////////////////
+    public void GetTournaments(){
+        //add error checking here for tournament count.
+
+        String myQuery = "SELECT COUNT(ROWID) FROM Tournament";
+
+        Cursor myCursor = DatabaseCommunicator.CreateFetchQuery(myQuery);
+
+        //grab the returned data
+        myCursor.moveToFirst();
+        int tourneyExists = myCursor.getInt(0);
+
+        //no tourneys exits
+        if(tourneyExists == 1){
+
+            //prepare a query
+            myQuery = "SELECT TournamentName FROM Tournament";
+            myCursor = DatabaseCommunicator.CreateFetchQuery(myQuery);
+            Log.d("SelectExistingTourney", "Query Complete");
+            //cycle through the results
+            myCursor.moveToFirst();
+
+            //Vector <String> tournamentNamesVector = new Vector<String>();
+            tournamentNamesVector.add(myCursor.getString(0));
+
+
+            while (myCursor.moveToNext()) {
+                tournamentNamesVector.add(myCursor.getString(0));
+
+            }
+
+        }
+
+        else {
+            Toast.makeText(getApplicationContext(), "No Tournaments have been created on the System yet.  " +
+                    "Please create a Tournament first.", Toast.LENGTH_SHORT).show();
+            thread.start();
+
+
+        }
+
+
+
+
+    }
+    Thread thread = new Thread(){
+        @Override
+        public void run() {
+            try {
+
+
+                //Sleep in milli seconds
+                //Toast.LENGTH_LONG = 3.5 second display
+                //Toast.LENGTH_SHORT = 2 second display
+                //Tweeked the timing for effect.
+                Thread.sleep(1900);
+                SelectExistingTournament.this.finish();
+            } catch (Exception e) {
+                Log.d("CreateAccount", "Error closing activity after toast message = " + e);
+            }
+        }
+    };
+
 }
