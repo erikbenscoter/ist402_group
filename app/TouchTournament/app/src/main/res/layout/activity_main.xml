@@ -5,78 +5,92 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/banner">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:scrollbars="none">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Remove DBS"
-            android:id="@+id/a"
-            android:onClick="REMOVEDB"
-            android:layout_gravity="right" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView"
-            android:src="@drawable/main_ball_collage" />
-    </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/banner"
+                android:gravity="center_horizontal|top">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/buttons"
-        android:layout_below="@+id/banner"
-        android:weightSum="5">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Remove DBS"
+                    android:id="@+id/a"
+                    android:onClick="REMOVEDB"
+                    android:layout_gravity="right" />
 
-        <Button
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="Create Account"
-            android:id="@+id/btnCreateAccount"
-            android:onClick="CreateAccount"
-            android:layout_gravity="center"
-            android:layout_weight="1" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView"
+                    android:src="@drawable/main_ball_collage" />
+            </LinearLayout>
 
-        <Button
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="Create New Tournament"
-            android:id="@+id/btnNewTournament"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:onClick="createNewTournament" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/buttons"
+                android:layout_below="@+id/banner"
+                android:weightSum="5">
 
-        <Button
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="Run an Existing Tournament"
-            android:id="@+id/btnExistingTournament"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:onClick="runExisting" />
+                <Button
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="Create Account"
+                    android:id="@+id/btnCreateAccount"
+                    android:onClick="CreateAccount"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
 
-        <Button
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="View a Tournamnet in Progress"
-            android:id="@+id/btnViewCurrentTournament"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:onClick="viewInProgres"/>
+                <Button
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="Create New Tournament"
+                    android:id="@+id/btnNewTournament"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:onClick="createNewTournament" />
 
-        <Button
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="Search Completed Tournaments"
-            android:id="@+id/btnViewCompletedTournament"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:visibility="visible" />
-    </LinearLayout>
+                <Button
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="Run an Existing Tournament"
+                    android:id="@+id/btnExistingTournament"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:onClick="runExisting" />
+
+                <Button
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="View a Tournamnet in Progress"
+                    android:id="@+id/btnViewCurrentTournament"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:onClick="viewInProgres"/>
+
+                <Button
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:text="Search Completed Tournaments"
+                    android:id="@+id/btnViewCompletedTournament"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
