@@ -534,8 +534,26 @@ public class TournamentPairings extends ActionBarActivity {
 
     }
 
+
     @Override
-    protected void onResume() {
+    protected void onRestart() {
+        super.onRestart();
+
+        //calculate the number of teams that will get a bye
+        m_numberOfByes = TournamentGenerator.ByeCalculator(m_numberOfParticipants);
+
+
+
+        //make the appropriate layout visible
+        PickTournamentLayout();
+
+        //grab the team names and seeds
+        PopulateNameArr();
+
+        //organize the buttons in an enterable way
+        OrganizeButtonArr();
+
+        //set the button texts that are related to the picked winners
         SetWinnersSpots();
     }
 }//end class
