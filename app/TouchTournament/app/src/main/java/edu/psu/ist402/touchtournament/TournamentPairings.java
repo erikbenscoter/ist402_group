@@ -1,5 +1,6 @@
 package edu.psu.ist402.touchtournament;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -423,15 +424,33 @@ public class TournamentPairings extends ActionBarActivity {
 
         return numberInRound;
 
-    }
+    }//end function
 
+    ///////////////////////////////////////////////////////////////////////////
+    //                  Function To Get TeamID
+    ///////////////////////////////////////////////////////////////////////////
+    public int GetTeamID(String p_teamName){
+
+        //create query
+        String myQuery = "SELECT Team.TeamID " +
+                            "FROM Team, Seeding " +
+                            "WHERE Seeding.TournamentID = '"+m_TournamentID+"' " +
+                            "AND Team.TeamName='"+p_teamName+"'";
+
+        //execute query
+        Cursor myCursor = DatabaseCommunicator.CreateFetchQuery(myQuery);
+
+        myCursor.moveToFirst();
+
+        return myCursor.getInt(0);
+    }
 
     ///////////////////////////////////////////////////////////////////////////
     //		Function to Implant the Onclick Listeners into the Buttons
     ///////////////////////////////////////////////////////////////////////////
     public void PushOnClickListeners(){
 
-        for (int itt = 0; itt<m_arrBracketButtons.length; itt++){
+        for (int itt = 0; itt<m_arrBracketButtons.length-1; itt++){
             m_arrBracketButtons[itt].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -461,6 +480,29 @@ public class TournamentPairings extends ActionBarActivity {
                     int spotForWinner = previousTotal + matchNumber + numberInRound;
 
                     m_arrBracketButtons[spotForWinner -1].setText("WINNER GOES HERE");
+
+                    //create an intent
+                    Intent intent = new Intent(getApplicationContext(),SelectWinner.class);
+                    intent.putExtra(TournamentPairings.const_TournamentID,m_TournamentID);
+                    intent.putExtra(SelectWinner.m_constSeedingID, spotForWinner);
+
+                    String team1IDName;
+                    String team2IDName;
+
+                    if (desiredButton % 2 == 1){
+                        team1IDName = m_arrBracketButtons[desiredButton -1].getText().toString();
+                        team2IDName = m_arrBracketButtons[desiredButton].getText().toString();
+                    }else{
+                        team1IDName = m_arrBracketButtons[desiredButton -2].getText().toString();
+                        team2IDName = m_arrBracketButtons[desiredButton -1].getText().toString();
+                    }
+
+                    int teamID1 = GetTeamID(team1IDName);
+                    int teamID2 = GetTeamID(team2IDName);
+
+                    intent.putExtra(SelectWinner.m_constTeam1ID,teamID1);
+                    intent.putExtra(SelectWinner.m_constTeam2ID,teamID2);
+                    startActivity(intent);
 
 
                 }
