@@ -535,7 +535,6 @@ public class TournamentPairings extends ActionBarActivity {
     }
 
 
-
 }//end class
 
 
