@@ -80,7 +80,8 @@
                     android:id="@+id/btnViewCurrentTournament"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:onClick="viewInProgres"/>
+                    android:onClick="viewInProgres"
+                    android:visibility="gone" />
 
                 <Button
                     android:layout_width="300dp"
