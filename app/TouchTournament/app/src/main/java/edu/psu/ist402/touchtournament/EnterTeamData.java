@@ -1,8 +1,10 @@
 package edu.psu.ist402.touchtournament;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -118,26 +120,92 @@ public class EnterTeamData extends ActionBarActivity {
     //                      Into the Database
     ///////////////////////////////////////////////////////////////////////////
 
-    public void PushData(){
+    public boolean PushData(){
 
-        //create query to insert into team table
-        String myQuery = "INSERT INTO Team(TeamName, Wins, Losses, City, State, ContactEmail) "+
-                            "VALUES('"+m_teamName+"','"+m_teamWins+"','"+m_teamLosses+"','"
-                            +m_teamCity+"','"+m_teamState+"','"+m_teamEmail+"')";
+        //error checking for duplicate seed
 
-        //execute query
-        DatabaseCommunicator.CreateInsertQuery(myQuery);
+        //number of entries currently in database
+        int entries = m_numberParticipantsCountUp - 1;
+        int seedUsed = 0;
+        boolean result = true;
+        int index = 0;
 
-        //get the row id of the last insert
-        int rowID = DatabaseCommunicator.GetRowID("Team");
+        String myQuery;
 
-        //create query to insert into seeding table
-        myQuery = "INSERT INTO Seeding(TournamentID,TeamID,Seed)" +
-                    "VALUES('"+m_tournamentID+"','"+rowID+"','"+m_teamSeed+"')";
+        if (Integer.parseInt(m_teamSeed) <= m_numberParticipants) {
 
-        //execute the query
-        DatabaseCommunicator.CreateInsertQuery(myQuery);
+            if (entries > 0) {
 
+                myQuery = "Select Seed From Seeding WHERE TournamentID = '" +
+                        m_tournamentID + "';";
+
+                Log.d("EnterTeamData", "Query Complete");
+
+                Cursor myCursor = DatabaseCommunicator.CreateFetchQuery(myQuery);
+
+                //the number of entries is the number of indexes in the array to hold query data
+                int seedCheck[] = new int[entries];
+
+                myCursor.moveToFirst();
+
+                Log.d("EnterTeamData", String.valueOf(myCursor.getInt(0)));
+
+                //put the seeds in the array by seed
+
+                seedCheck[index] = myCursor.getInt(index);
+
+                while (myCursor.moveToNext()) {
+                    index++;
+                    //put the TeamID in the array by seed
+                    seedCheck[index] = myCursor.getInt(0);
+                }
+                Log.d("EnterTeamData", "transfer query to array");
+
+                for (int i = 0; i < entries; i++) {
+                    if (Integer.parseInt(m_teamSeed) == seedCheck[i])
+                        seedUsed = 1;
+                }
+            }
+        }
+
+        else{
+            seedUsed = 2;
+        }
+
+        if (seedUsed == 0) {
+            //create query to insert into team table
+            myQuery = "INSERT INTO Team(TeamName, Wins, Losses, City, State, ContactEmail) " +
+                    "VALUES('" + m_teamName + "','" + m_teamWins + "','" + m_teamLosses + "','"
+                    + m_teamCity + "','" + m_teamState + "','" + m_teamEmail + "')";
+
+            //execute query
+            DatabaseCommunicator.CreateInsertQuery(myQuery);
+
+            //get the row id of the last insert
+            int rowID = DatabaseCommunicator.GetRowID("Team");
+
+            //create query to insert into seeding table
+            myQuery = "INSERT INTO Seeding(TournamentID,TeamID,Seed)" +
+                    "VALUES('" + m_tournamentID + "','" + rowID + "','" + m_teamSeed + "')";
+
+            //execute the query
+            DatabaseCommunicator.CreateInsertQuery(myQuery);
+        }
+
+        else if(seedUsed == 1){
+            Toast.makeText(getApplicationContext(),"The current seed is already used, please select another!",
+                    Toast.LENGTH_LONG).show();
+            result = false;
+
+        }
+
+        else if (seedUsed == 2) {
+            Toast.makeText(getApplicationContext(),"You can not have a seed higher than " + m_numberParticipants,
+                    Toast.LENGTH_LONG).show();
+            result = false;
+        }
+
+        return result;
     }
 
 
@@ -152,39 +220,39 @@ public class EnterTeamData extends ActionBarActivity {
         GetData();
 
         //push the data to the database
-        PushData();
+        if(PushData()) {
 
 
-        //remove 1 from the participants left
-        m_numberParticipantsLeft -= 1;
-        m_numberParticipantsCountUp++;
+            //remove 1 from the participants left
+            m_numberParticipantsLeft -= 1;
+            m_numberParticipantsCountUp++;
 
-        //if there are no participants left to add thank them and exit to the main screen
-        if(m_numberParticipantsLeft == 0){
+            //if there are no participants left to add thank them and exit to the main screen
+            if (m_numberParticipantsLeft == 0) {
 
-            Toast.makeText(getApplicationContext(),"Thank you your final team was added",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Thank you your final team was added", Toast.LENGTH_LONG).show();
 
 
-            Intent intent = new Intent(this,TournamentPairings.class);
+                Intent intent = new Intent(this, TournamentPairings.class);
 
-            //push extras
-            //intent.putExtra(TournamentPairings.const_NumOfParticipants,m_numberParticipants);
-            intent.putExtra(TournamentPairings.const_TournamentID,m_tournamentID);
+                //push extras
+                //intent.putExtra(TournamentPairings.const_NumOfParticipants,m_numberParticipants);
+                intent.putExtra(TournamentPairings.const_TournamentID, m_tournamentID);
 
-            startActivity(intent);
-        }else{
+                startActivity(intent);
+            } else {
 
-            //tell them they were successful
-            Toast.makeText(getApplicationContext(),"Team Added",Toast.LENGTH_LONG).show();
+                //tell them they were successful
+                Toast.makeText(getApplicationContext(), "Team Added", Toast.LENGTH_LONG).show();
+
+            }
+
+
+            //startover so they can add more
+            ClearForm();
+            teamCount();
 
         }
-
-
-        //startover so they can add more
-        ClearForm();
-        teamCount();
-
-
 
     }
 
