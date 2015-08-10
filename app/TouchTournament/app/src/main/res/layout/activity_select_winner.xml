@@ -24,7 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/banner"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout">
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,7 +43,6 @@
             <RadioButton
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="New RadioButton"
                 android:id="@+id/RBteam1"
                 android:checked="false"
                 android:singleLine="true" />
@@ -50,11 +50,19 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New RadioButton"
                 android:id="@+id/RBteam2"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:checked="false" />
         </RadioGroup>
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:onClick="SubmitPickedWinnerValues"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>

@@ -1,9 +1,13 @@
 package edu.psu.ist402.touchtournament;
 
+import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.RadioButton;
 
 
 public class SelectWinner extends ActionBarActivity {
@@ -17,6 +21,8 @@ public class SelectWinner extends ActionBarActivity {
     public int m_seedingID;
     public int m_winerScore;
     public int m_loserScore;
+    public RadioButton m_team1;
+    public RadioButton m_team2;
 
 
 
@@ -25,7 +31,12 @@ public class SelectWinner extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_winner);
 
+        //initialize the varibales
         GetValues();
+
+        //set the radiobuttons
+        SetRadioButtonString();
+
     }
 
     @Override
@@ -55,6 +66,10 @@ public class SelectWinner extends ActionBarActivity {
 
         //get the intent variables
         GetIntentVariables();
+
+        //get the radio buttons
+        m_team1 = (RadioButton) findViewById(R.id.RBteam1);
+        m_team2 = (RadioButton) findViewById(R.id.RBteam2);
     }
 
     public void GetIntentVariables(){
@@ -66,7 +81,27 @@ public class SelectWinner extends ActionBarActivity {
 
     }
 
-    public void SubmitValues(){
+    public String GetTeamName( int p_teamID ){
+
+        //create query
+        String myQuery = "SELECT Team.TeamName FROM Team WHERE Team.ROWID = "+Integer.toString(p_teamID);
+
+        //execute query
+        Cursor myCursor = DatabaseCommunicator.CreateFetchQuery(myQuery);
+        myCursor.moveToFirst();
+        return myCursor.getString(0);
+    }
+    public void SetRadioButtonString( ){
+
+        String team1Name = GetTeamName(m_teamID1);
+        String team2Name = GetTeamName(m_teamID2);
+
+        m_team1.setText(team1Name);
+        m_team2.setText(team2Name);
+    }
+
+
+    public void SubmitPickedWinnerValues(View v){
 
         //make query
         String myQuery = "INSERT INTO Winners(TournamentID, TeamID, SeedingID, WinnerScore,LoserScore)" +
@@ -74,5 +109,7 @@ public class SelectWinner extends ActionBarActivity {
 
         //execute query
         DatabaseCommunicator.CreateInsertQuery(myQuery);
+
+        finish();
     }
 }

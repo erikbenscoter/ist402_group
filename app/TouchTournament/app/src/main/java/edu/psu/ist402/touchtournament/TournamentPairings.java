@@ -71,6 +71,9 @@ public class TournamentPairings extends ActionBarActivity {
         //set the onclick listeners
         PushOnClickListeners();
 
+        //set the button texts that are related to the picked winners
+        SetWinnersSpots();
+
     }
 
     private int grabNumberofParticipants() {
@@ -432,7 +435,7 @@ public class TournamentPairings extends ActionBarActivity {
     public int GetTeamID(String p_teamName){
 
         //create query
-        String myQuery = "SELECT Team.TeamID " +
+        String myQuery = "SELECT Team.ROWID " +
                             "FROM Team, Seeding " +
                             "WHERE Seeding.TournamentID = '"+m_TournamentID+"' " +
                             "AND Team.TeamName='"+p_teamName+"'";
@@ -508,6 +511,27 @@ public class TournamentPairings extends ActionBarActivity {
                 }
             });
         }
+    }//end function
+
+    public void SetWinnersSpots(){
+
+        //make query
+        String myQuery = "SELECT Winners.SeedingID, Team.TeamName " +
+                "FROM Team, Winners " +
+                "WHERE Winners.TournamentID = "+m_TournamentID+" AND " +
+                "Winners.TeamID = Team.ROWID";
+
+        //execute query
+        Cursor myCursor = DatabaseCommunicator.CreateFetchQuery(myQuery);
+        myCursor.moveToFirst();
+
+        for( int itt = 0; itt < myCursor.getCount(); itt++ ){
+            m_arrBracketButtons[myCursor.getInt(0) -1].setText(myCursor.getString(1));
+            myCursor.moveToNext();
+        }
+
+
+
     }
 
 
