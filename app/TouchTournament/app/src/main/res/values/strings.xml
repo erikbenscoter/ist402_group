@@ -50,5 +50,6 @@
     <string name="title_activity_tournament_pairings">Tournament Pairings</string>
     <string name="title_activity_create_account">CreateAccount</string>
     <string name="title_activity_enter_team_data">Enter Team Data</string>
+    <string name="title_activity_select_winner">SelectWinner</string>
     
 </resources>

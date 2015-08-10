@@ -84,6 +84,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.psu.ist402.touchtournament.MainActivity" />
         </activity>
+        <activity
+            android:name=".SelectWinner"
+            android:label="@string/title_activity_select_winner"
+            android:parentActivityName=".TournamentPairings" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.psu.ist402.touchtournament.TournamentPairings" />
+        </activity>
     </application>
 
 </manifest>
