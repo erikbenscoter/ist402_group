@@ -463,10 +463,10 @@ public class TournamentPairings extends ActionBarActivity {
                     int buttonItt = 0;
                     int desiredButton = -10;
 
-                    while (!buttonFound && buttonItt < m_arrBracketButtons.length){
+                    while (!buttonFound && buttonItt < m_arrBracketButtons.length) {
 
                         //if we find the button, stop searching
-                        if ( m_arrBracketButtons[buttonItt].getId() == v.getId()  ){
+                        if (m_arrBracketButtons[buttonItt].getId() == v.getId()) {
                             buttonFound = true;
                             desiredButton = buttonItt;
                         }
@@ -474,37 +474,37 @@ public class TournamentPairings extends ActionBarActivity {
                         buttonItt++;
                     }
 
-                    desiredButton ++;
+                    desiredButton++;
 
                     int roundNumber = GetRoundNumber(desiredButton);
                     int numberInRound = GetNumberInRound(roundNumber);
-                    int matchNumber = GetMatchNumber(desiredButton,roundNumber);
-                    int previousTotal = GetPreviousTotalSpots(desiredButton,roundNumber);
+                    int matchNumber = GetMatchNumber(desiredButton, roundNumber);
+                    int previousTotal = GetPreviousTotalSpots(desiredButton, roundNumber);
                     int spotForWinner = previousTotal + matchNumber + numberInRound;
 
-                    m_arrBracketButtons[spotForWinner -1].setText("WINNER GOES HERE");
+                    m_arrBracketButtons[spotForWinner - 1].setText("WINNER GOES HERE");
 
                     //create an intent
-                    Intent intent = new Intent(getApplicationContext(),SelectWinner.class);
-                    intent.putExtra(TournamentPairings.const_TournamentID,m_TournamentID);
+                    Intent intent = new Intent(getApplicationContext(), SelectWinner.class);
+                    intent.putExtra(TournamentPairings.const_TournamentID, m_TournamentID);
                     intent.putExtra(SelectWinner.m_constSeedingID, spotForWinner);
 
                     String team1IDName;
                     String team2IDName;
 
-                    if (desiredButton % 2 == 1){
-                        team1IDName = m_arrBracketButtons[desiredButton -1].getText().toString();
+                    if (desiredButton % 2 == 1) {
+                        team1IDName = m_arrBracketButtons[desiredButton - 1].getText().toString();
                         team2IDName = m_arrBracketButtons[desiredButton].getText().toString();
-                    }else{
-                        team1IDName = m_arrBracketButtons[desiredButton -2].getText().toString();
-                        team2IDName = m_arrBracketButtons[desiredButton -1].getText().toString();
+                    } else {
+                        team1IDName = m_arrBracketButtons[desiredButton - 2].getText().toString();
+                        team2IDName = m_arrBracketButtons[desiredButton - 1].getText().toString();
                     }
 
                     int teamID1 = GetTeamID(team1IDName);
                     int teamID2 = GetTeamID(team2IDName);
 
-                    intent.putExtra(SelectWinner.m_constTeam1ID,teamID1);
-                    intent.putExtra(SelectWinner.m_constTeam2ID,teamID2);
+                    intent.putExtra(SelectWinner.m_constTeam1ID, teamID1);
+                    intent.putExtra(SelectWinner.m_constTeam2ID, teamID2);
                     startActivity(intent);
 
 
@@ -534,7 +534,10 @@ public class TournamentPairings extends ActionBarActivity {
 
     }
 
-
+    @Override
+    protected void onResume() {
+        SetWinnersSpots();
+    }
 }//end class
 
 
