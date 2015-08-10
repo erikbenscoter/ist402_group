@@ -116,7 +116,7 @@ public class SelectExistingTournament extends ActionBarActivity {
         int tourneyExists = myCursor.getInt(0);
 
         //no tourneys exits
-        if(tourneyExists >= 1){
+        if(tourneyExists > 0){
 
             //prepare a query
             myQuery = "SELECT TournamentName FROM Tournament";

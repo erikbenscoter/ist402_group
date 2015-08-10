@@ -5,51 +5,65 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".SelectExistingTournament">
 
-    <!--Banner section-->
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/banner">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView"
+        android:scrollbars="none">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView2"
-            android:src="@drawable/ball_collage_small" />
-    </LinearLayout>
-
-    <!--Contains all the fields for a new tourney-->
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/fields"
-        android:layout_below="@+id/banner"
-        android:weightSum="11">
-
-        <!--Horizontal linear layout to place the TextView and EditText next to each other-->
-        <!--Tourney Name section-->
-        <RadioGroup
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="10"
-            android:weightSum="10"
-            android:id="@+id/buttonGroup">
+            android:layout_height="match_parent">
 
-        </RadioGroup>
+    <!--Banner section-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/banner"
+                android:gravity="center_horizontal|top">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select"
-            android:id="@+id/selectBullon"
-            android:layout_gravity="center_horizontal|top"
-            android:layout_weight="1"
-            android:padding="4dp"
-            android:onClick="select" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView2"
+                    android:src="@drawable/ball_collage_small" />
+            </LinearLayout>
 
-    </LinearLayout>
+            <!--Contains all the fields for a new tourney-->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/fields"
+                android:layout_below="@+id/banner"
+                android:weightSum="11">
+
+                <!--Horizontal linear layout to place the TextView and EditText next to each other-->
+                <!--Tourney Name section-->
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="10"
+                    android:weightSum="10"
+                    android:id="@+id/buttonGroup">
+
+                </RadioGroup>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select"
+                    android:id="@+id/selectBullon"
+                    android:layout_gravity="center_horizontal|top"
+                    android:layout_weight="1"
+                    android:padding="4dp"
+                    android:onClick="select" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
 
 
