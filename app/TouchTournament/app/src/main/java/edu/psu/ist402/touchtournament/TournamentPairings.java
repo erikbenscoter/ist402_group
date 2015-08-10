@@ -67,6 +67,9 @@ public class TournamentPairings extends ActionBarActivity {
         //populate the byes
         PopulateByes();
 
+        //set the onclick listeners
+        PushOnClickListeners();
+
     }
 
     private int grabNumberofParticipants() {
@@ -339,7 +342,132 @@ public class TournamentPairings extends ActionBarActivity {
             }
 
         }
+    }//end function
+
+    ///////////////////////////////////////////////////////////////////////////
+    //         Function to get the total spots that preceded the current one
+    ///////////////////////////////////////////////////////////////////////////
+    public int GetPreviousTotalSpots( int p_spot, int p_roundNumber ){
+        int currRound =0;
+        int totalSpots = 0;
+
+        //get the total of the groups behind
+        while( currRound < p_roundNumber - 1  ){
+
+            currRound ++;
+            totalSpots = totalSpots + GetNumberInRound(currRound);
+        }
+
+        return totalSpots;
     }
+
+
+    ///////////////////////////////////////////////////////////////////////////
+    //          Function to get the match number of a particular
+    //                          Spot Number
+    ///////////////////////////////////////////////////////////////////////////
+    public int GetMatchNumber( int p_spotNumber, int p_roundNumber ){
+
+        int desiredGroupNumber = 0;
+        int totalSpots = 0;
+
+        totalSpots = GetPreviousTotalSpots(p_spotNumber, p_roundNumber);
+
+
+        p_spotNumber = p_spotNumber - totalSpots;
+
+        //itterate through to find which group the given spot is in
+        for( int currentGroup = 1; p_spotNumber > currentGroup * 2; currentGroup ++){
+            desiredGroupNumber = currentGroup;
+        }
+        desiredGroupNumber ++;
+        //return desired Group number
+        return desiredGroupNumber;
+    }// end function
+
+    ///////////////////////////////////////////////////////////////////////////
+    //                  Function To Get Round Number
+    ///////////////////////////////////////////////////////////////////////////
+    public int GetRoundNumber ( int p_spot ){
+
+        int numberInRound = m_sizeLayout;
+        int currentRound = 1;
+        int isInCurrentRound = p_spot/numberInRound;
+
+
+        while(isInCurrentRound != 0){
+
+            currentRound ++;
+            numberInRound = numberInRound + numberInRound/2;
+            isInCurrentRound = p_spot/numberInRound;
+            if (isInCurrentRound == 1 && p_spot % numberInRound == 0){
+                isInCurrentRound = 0;
+            }
+
+        }
+
+        return currentRound;
+    }//end function
+
+    ///////////////////////////////////////////////////////////////////////////
+    //                  Function To Get Seeds In Round
+    ///////////////////////////////////////////////////////////////////////////
+    public int GetNumberInRound( int p_Round ){
+
+        int numberInRound = m_sizeLayout;
+
+        for(int roundItt = 1; roundItt < p_Round; roundItt++){
+
+            numberInRound = numberInRound/2;
+        }
+
+        return numberInRound;
+
+    }
+
+
+    ///////////////////////////////////////////////////////////////////////////
+    //		Function to Implant the Onclick Listeners into the Buttons
+    ///////////////////////////////////////////////////////////////////////////
+    public void PushOnClickListeners(){
+
+        for (int itt = 0; itt<m_arrBracketButtons.length; itt++){
+            m_arrBracketButtons[itt].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    //determine the button spot
+                    boolean buttonFound = false;
+                    int buttonItt = 0;
+                    int desiredButton = -10;
+
+                    while (!buttonFound && buttonItt < m_arrBracketButtons.length){
+
+                        //if we find the button, stop searching
+                        if ( m_arrBracketButtons[buttonItt].getId() == v.getId()  ){
+                            buttonFound = true;
+                            desiredButton = buttonItt;
+                        }
+
+                        buttonItt++;
+                    }
+
+                    desiredButton ++;
+
+                    int roundNumber = GetRoundNumber(desiredButton);
+                    int numberInRound = GetNumberInRound(roundNumber);
+                    int matchNumber = GetMatchNumber(desiredButton,roundNumber);
+                    int previousTotal = GetPreviousTotalSpots(desiredButton,roundNumber);
+                    int spotForWinner = previousTotal + matchNumber + numberInRound;
+
+                    m_arrBracketButtons[spotForWinner -1].setText("WINNER GOES HERE");
+
+
+                }
+            });
+        }
+    }
+
 
 
 }//end class
