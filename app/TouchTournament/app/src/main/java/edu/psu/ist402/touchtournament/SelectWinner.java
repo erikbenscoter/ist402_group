@@ -103,9 +103,18 @@ public class SelectWinner extends ActionBarActivity {
 
     public void SubmitPickedWinnerValues(View v){
 
+        //figure out what is selected
+        int winner;
+        if(m_team1.isChecked()){
+            winner = m_teamID1;
+        }else {
+            winner = m_teamID2;
+        }
+
+
         //make query
         String myQuery = "INSERT INTO Winners(TournamentID, TeamID, SeedingID, WinnerScore,LoserScore)" +
-                            "VALUES('"+m_tournamentID+"','"+m_teamID1+"','"+m_seedingID+"','"+m_winerScore+"','"+m_loserScore+"')";
+                            "VALUES('"+m_tournamentID+"','"+winner+"','"+m_seedingID+"','"+m_winerScore+"','"+m_loserScore+"')";
 
         //execute query
         DatabaseCommunicator.CreateInsertQuery(myQuery);
